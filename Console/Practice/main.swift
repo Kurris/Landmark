@@ -315,6 +315,23 @@ enum status : Int{
         }
     }
 }
+enum Tab : Int{
+    case house = 1
+    case explore,account
+    
+    func description() ->String{
+        switch self {
+        case .house:
+            return "主页"
+        case .explore:
+            return "搜索"
+        case .account:
+            return "我的"
+        }
+    }
+}
+
+
 
 let one =  status.two
 print(one.rawValue)
