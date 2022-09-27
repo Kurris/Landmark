@@ -69,6 +69,17 @@
 		1EA55FFE28B350FF004645A5 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA55FFD28B350FE004645A5 /* NavigationBar.swift */; };
 		1EA5600028B35F5B004645A5 /* StrokeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA55FFF28B35F5B004645A5 /* StrokeStyle.swift */; };
 		1EDB892A28D193D600B5BCBB /* MyButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDB892928D193D600B5BCBB /* MyButtonStyle.swift */; };
+		1EE2377228E1560800A85DFA /* CustomSubmitButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2377128E1560800A85DFA /* CustomSubmitButtonView.swift */; };
+		1EE2377428E1579800A85DFA /* OnSubmitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2377328E1579800A85DFA /* OnSubmitView.swift */; };
+		1EE2377728E16D1700A85DFA /* AppStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2377628E16D1700A85DFA /* AppStateView.swift */; };
+		1EE2377928E16F8000A85DFA /* DeviceRotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2377828E16F8000A85DFA /* DeviceRotationView.swift */; };
+		1EE2377C28E1721C00A85DFA /* KeyboardAttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2377B28E1721C00A85DFA /* KeyboardAttachmentView.swift */; };
+		1EE2377F28E17D2400A85DFA /* TapGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2377E28E17D2400A85DFA /* TapGestureView.swift */; };
+		1EE2378128E17E1C00A85DFA /* LongPressGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2378028E17E1C00A85DFA /* LongPressGestureView.swift */; };
+		1EE2378328E1802700A85DFA /* DragGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2378228E1802700A85DFA /* DragGestureView.swift */; };
+		1EE2378528E1847300A85DFA /* HighPriorityGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2378428E1847300A85DFA /* HighPriorityGestureView.swift */; };
+		1EE2378728E19D6A00A85DFA /* SimultaneousGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2378628E19D6A00A85DFA /* SimultaneousGestureView.swift */; };
+		1EE2378928E1A71200A85DFA /* ChainsGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2378828E1A71200A85DFA /* ChainsGestureView.swift */; };
 		1EEEDDAE28B3B74B000578EF /* ScrollPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEDDAD28B3B74B000578EF /* ScrollPreferenceKey.swift */; };
 		1EF86F6F28B23FEB009BB624 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF86F6E28B23FEB009BB624 /* AccountView.swift */; };
 /* End PBXBuildFile section */
@@ -135,6 +146,17 @@
 		1EA55FFD28B350FE004645A5 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		1EA55FFF28B35F5B004645A5 /* StrokeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeStyle.swift; sourceTree = "<group>"; };
 		1EDB892928D193D600B5BCBB /* MyButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyButtonStyle.swift; sourceTree = "<group>"; };
+		1EE2377128E1560800A85DFA /* CustomSubmitButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSubmitButtonView.swift; sourceTree = "<group>"; };
+		1EE2377328E1579800A85DFA /* OnSubmitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnSubmitView.swift; sourceTree = "<group>"; };
+		1EE2377628E16D1700A85DFA /* AppStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateView.swift; sourceTree = "<group>"; };
+		1EE2377828E16F8000A85DFA /* DeviceRotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRotationView.swift; sourceTree = "<group>"; };
+		1EE2377B28E1721C00A85DFA /* KeyboardAttachmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAttachmentView.swift; sourceTree = "<group>"; };
+		1EE2377E28E17D2400A85DFA /* TapGestureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapGestureView.swift; sourceTree = "<group>"; };
+		1EE2378028E17E1C00A85DFA /* LongPressGestureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongPressGestureView.swift; sourceTree = "<group>"; };
+		1EE2378228E1802700A85DFA /* DragGestureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragGestureView.swift; sourceTree = "<group>"; };
+		1EE2378428E1847300A85DFA /* HighPriorityGestureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighPriorityGestureView.swift; sourceTree = "<group>"; };
+		1EE2378628E19D6A00A85DFA /* SimultaneousGestureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimultaneousGestureView.swift; sourceTree = "<group>"; };
+		1EE2378828E1A71200A85DFA /* ChainsGestureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChainsGestureView.swift; sourceTree = "<group>"; };
 		1EEEDDAD28B3B74B000578EF /* ScrollPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPreferenceKey.swift; sourceTree = "<group>"; };
 		1EF86F6E28B23FEB009BB624 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -244,6 +266,10 @@
 		1E895A6828D40A6C0087FCFB /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				1EE2377D28E17CB100A85DFA /* Gesture */,
+				1EE2377A28E171FC00A85DFA /* Keyboard */,
+				1EE2377528E16C9500A85DFA /* AppInteraction */,
+				1EE2377028E155DA00A85DFA /* Input */,
 				1E541EB828DB08E300320FC7 /* CustomStyles */,
 				1E541EB128DAF98A00320FC7 /* Badge */,
 				1E541EA628DAD96F00320FC7 /* List */,
@@ -385,6 +411,45 @@
 			path = Componments;
 			sourceTree = "<group>";
 		};
+		1EE2377028E155DA00A85DFA /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				1EE2377128E1560800A85DFA /* CustomSubmitButtonView.swift */,
+				1EE2377328E1579800A85DFA /* OnSubmitView.swift */,
+			);
+			path = Input;
+			sourceTree = "<group>";
+		};
+		1EE2377528E16C9500A85DFA /* AppInteraction */ = {
+			isa = PBXGroup;
+			children = (
+				1EE2377628E16D1700A85DFA /* AppStateView.swift */,
+				1EE2377828E16F8000A85DFA /* DeviceRotationView.swift */,
+			);
+			path = AppInteraction;
+			sourceTree = "<group>";
+		};
+		1EE2377A28E171FC00A85DFA /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				1EE2377B28E1721C00A85DFA /* KeyboardAttachmentView.swift */,
+			);
+			path = Keyboard;
+			sourceTree = "<group>";
+		};
+		1EE2377D28E17CB100A85DFA /* Gesture */ = {
+			isa = PBXGroup;
+			children = (
+				1EE2377E28E17D2400A85DFA /* TapGestureView.swift */,
+				1EE2378028E17E1C00A85DFA /* LongPressGestureView.swift */,
+				1EE2378228E1802700A85DFA /* DragGestureView.swift */,
+				1EE2378428E1847300A85DFA /* HighPriorityGestureView.swift */,
+				1EE2378628E19D6A00A85DFA /* SimultaneousGestureView.swift */,
+				1EE2378828E1A71200A85DFA /* ChainsGestureView.swift */,
+			);
+			path = Gesture;
+			sourceTree = "<group>";
+		};
 		1EF86F6C28B23FD6009BB624 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -479,21 +544,28 @@
 				1E895A8228D98E260087FCFB /* NavigationSimpleView.swift in Sources */,
 				1E895A7A28D4C8280087FCFB /* UINavigationController.swift in Sources */,
 				1E39437B28B609E900D20030 /* ItemDetailPreferenceKey.swift in Sources */,
+				1EE2378128E17E1C00A85DFA /* LongPressGestureView.swift in Sources */,
 				1E541EB328DAF9A000320FC7 /* BadgeInListView.swift in Sources */,
 				1E333A3128DB102600E59AA6 /* StrokeCornerRadiusStyleView.swift in Sources */,
+				1EE2378728E19D6A00A85DFA /* SimultaneousGestureView.swift in Sources */,
 				1EA4647128B15C6C00707ADB /* ContentView.swift in Sources */,
 				1E4B791928B325EA00D7A1DE /* TabItem.swift in Sources */,
 				1E895A8F28D9B0BE0087FCFB /* MenuView.swift in Sources */,
 				1E541EA828DAD97A00320FC7 /* DeleteAndEditListView.swift in Sources */,
 				1E39437F28B6601000D20030 /* ItemEmptyView.swift in Sources */,
+				1EE2377F28E17D2400A85DFA /* TapGestureView.swift in Sources */,
+				1EE2377428E1579800A85DFA /* OnSubmitView.swift in Sources */,
 				1E4B791628B26A1B00D7A1DE /* CanvasView.swift in Sources */,
 				1EA5600028B35F5B004645A5 /* StrokeStyle.swift in Sources */,
+				1EE2378328E1802700A85DFA /* DragGestureView.swift in Sources */,
 				1E895A8D28D9AA130087FCFB /* StepperView.swift in Sources */,
 				1E7FB18B28B49F7B00FA6352 /* TabPageView.swift in Sources */,
 				1E541EB028DAE34200320FC7 /* RadiusListView.swift in Sources */,
 				1E4DF47628D2D3A1003B912C /* InputStyle.swift in Sources */,
+				1EE2378928E1A71200A85DFA /* ChainsGestureView.swift in Sources */,
 				1EA4647E28B23C6200707ADB /* GrayBackground.swift in Sources */,
 				1E895A6C28D4711D0087FCFB /* StickyView.swift in Sources */,
+				1EE2378528E1847300A85DFA /* HighPriorityGestureView.swift in Sources */,
 				1E7FB18D28B49F8E00FA6352 /* FeaturedItemView.swift in Sources */,
 				1E541EAA28DADC8F00320FC7 /* SwipeListView.swift in Sources */,
 				1E541EB528DAF9E900320FC7 /* DefaultBadgeView.swift in Sources */,
@@ -518,12 +590,16 @@
 				1E0DAF5728D04DDF004782EA /* SearchView.swift in Sources */,
 				1E8639E228BE342000222D64 /* Model.swift in Sources */,
 				1E895A7828D4C44F0087FCFB /* CustomNavigation.swift in Sources */,
+				1EE2377728E16D1700A85DFA /* AppStateView.swift in Sources */,
 				1EA55FF728B33423004645A5 /* ExploreView.swift in Sources */,
+				1EE2377928E16F8000A85DFA /* DeviceRotationView.swift in Sources */,
 				1EA4646F28B15C6C00707ADB /* PracticUIApp.swift in Sources */,
 				1E895A7328D474380087FCFB /* DefaultProgressView.swift in Sources */,
 				1E541EB728DB00F400320FC7 /* ConfirmationDialogView.swift in Sources */,
+				1EE2377C28E1721C00A85DFA /* KeyboardAttachmentView.swift in Sources */,
 				1E541EBC28DB092800320FC7 /* CheckToggleStyle.swift in Sources */,
 				1E39437328B5B91200D20030 /* ItemView.swift in Sources */,
+				1EE2377228E1560800A85DFA /* CustomSubmitButtonView.swift in Sources */,
 				1E895A8B28D9A9F60087FCFB /* SliderView.swift in Sources */,
 				1E541EAC28DADEE100320FC7 /* ExpandListView.swift in Sources */,
 				1EEEDDAE28B3B74B000578EF /* ScrollPreferenceKey.swift in Sources */,

@@ -21,6 +21,69 @@ struct DemoView: View {
     var body: some View {
             NavigationView{
                 List{
+                    
+                    Section("App Interaction"){
+                        NavigationLink {
+                            AppStateView()
+                        } label: {
+                            Text("App State")
+                        }
+                        
+                        NavigationLink {
+                            DeviceRotationView()
+                        } label: {
+                            Text("App Rotation")
+                        }
+                    }
+                    
+                    
+                    Section("Keyboard"){
+                        NavigationLink {
+                            KeyboardAttachmentView()
+                        } label: {
+                            Text("自定义keyboard内容")
+                        }
+                    }
+                    
+                    Section("Gesture"){
+                        NavigationLink {
+                            TapGestureView()
+                        } label: {
+                            Text("单击/双击...")
+                        }
+                        
+                        NavigationLink {
+                            LongPressGestureView()
+                        } label: {
+                            Text("长按")
+                        }
+                        
+                        NavigationLink {
+                            DragGestureView()
+                        } label: {
+                            Text("拖拽")
+                        }
+                        
+                        NavigationLink {
+                            HighPriorityGestureView()
+                        } label: {
+                            Text("高优先级,并且覆盖")
+                        }
+                        
+                        NavigationLink {
+                            SimultaneousGestureView()
+                        } label: {
+                            Text("同时触发")
+                        }
+                        
+                        NavigationLink {
+                            ChainsGestureView()
+                        } label: {
+                            Text("手势链路")
+                        }
+                    }
+                    
+                    
                     Group{
                         Section(header:Text("Navigation")) {
                             NavigationLink {
@@ -269,6 +332,22 @@ struct DemoView: View {
                            StrokeCornerRadiusStyleView()
                         } label: {
                             Text("Modifier:StrokeCornerRadius")
+                        }
+                    }
+                    
+                    
+                    Section("Input"){
+                        NavigationLink {
+                            CustomSubmitButtonView()
+                        } label: {
+                            Text("自定义按钮")
+                        }
+                        
+                        
+                        NavigationLink {
+                            OnSubmitView()
+                        } label: {
+                            Text("按钮触发动作")
                         }
                     }
                 }

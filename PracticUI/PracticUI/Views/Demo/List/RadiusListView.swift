@@ -37,7 +37,6 @@ struct RadiusListView: View {
                 EditButton()
             }
         }
-      
         .enableInjection()
     }
 }
