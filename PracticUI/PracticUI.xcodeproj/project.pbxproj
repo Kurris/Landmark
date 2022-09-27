@@ -80,6 +80,7 @@
 		1EE2378528E1847300A85DFA /* HighPriorityGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2378428E1847300A85DFA /* HighPriorityGestureView.swift */; };
 		1EE2378728E19D6A00A85DFA /* SimultaneousGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2378628E19D6A00A85DFA /* SimultaneousGestureView.swift */; };
 		1EE2378928E1A71200A85DFA /* ChainsGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2378828E1A71200A85DFA /* ChainsGestureView.swift */; };
+		1EE2378B28E2C83E00A85DFA /* SideBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2378A28E2C83E00A85DFA /* SideBarView.swift */; };
 		1EEEDDAE28B3B74B000578EF /* ScrollPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEDDAD28B3B74B000578EF /* ScrollPreferenceKey.swift */; };
 		1EF86F6F28B23FEB009BB624 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF86F6E28B23FEB009BB624 /* AccountView.swift */; };
 /* End PBXBuildFile section */
@@ -157,6 +158,7 @@
 		1EE2378428E1847300A85DFA /* HighPriorityGestureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighPriorityGestureView.swift; sourceTree = "<group>"; };
 		1EE2378628E19D6A00A85DFA /* SimultaneousGestureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimultaneousGestureView.swift; sourceTree = "<group>"; };
 		1EE2378828E1A71200A85DFA /* ChainsGestureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChainsGestureView.swift; sourceTree = "<group>"; };
+		1EE2378A28E2C83E00A85DFA /* SideBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarView.swift; sourceTree = "<group>"; };
 		1EEEDDAD28B3B74B000578EF /* ScrollPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPreferenceKey.swift; sourceTree = "<group>"; };
 		1EF86F6E28B23FEB009BB624 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -259,6 +261,7 @@
 				1EA55FF828B34CB8004645A5 /* HomeView.swift */,
 				1E7FB18A28B49F7B00FA6352 /* TabPageView.swift */,
 				1E7FB18C28B49F8E00FA6352 /* FeaturedItemView.swift */,
+				1EE2378A28E2C83E00A85DFA /* SideBarView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -597,6 +600,7 @@
 				1E895A7328D474380087FCFB /* DefaultProgressView.swift in Sources */,
 				1E541EB728DB00F400320FC7 /* ConfirmationDialogView.swift in Sources */,
 				1EE2377C28E1721C00A85DFA /* KeyboardAttachmentView.swift in Sources */,
+				1EE2378B28E2C83E00A85DFA /* SideBarView.swift in Sources */,
 				1E541EBC28DB092800320FC7 /* CheckToggleStyle.swift in Sources */,
 				1E39437328B5B91200D20030 /* ItemView.swift in Sources */,
 				1EE2377228E1560800A85DFA /* CustomSubmitButtonView.swift in Sources */,
