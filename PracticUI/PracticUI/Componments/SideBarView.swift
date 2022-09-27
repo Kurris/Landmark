@@ -12,6 +12,8 @@ struct SideBarView<SidebarContent: View, Content: View>: View {
     
     @ObserveInjection var inject
     
+    @EnvironmentObject var model : Model
+    
     let sidebarContent: SidebarContent
     let mainContent: Content
     @State var sidebarWidth: CGFloat = CGFloat.zero
@@ -69,7 +71,7 @@ struct SideBarView<SidebarContent: View, Content: View>: View {
         .gesture(
             DragGesture(minimumDistance: 10)
                 .onChanged({ gesture in
-                    guard gesture.translation.width > 0 && sidebarWidth != 225 else { return }
+                    guard gesture.translation.width > 0 && sidebarWidth != 225 && model.isAbleShowSidebar  else { return }
                     
                     if gesture.startLocation.x < 10 {
                         if gesture.translation.width <= 225 {

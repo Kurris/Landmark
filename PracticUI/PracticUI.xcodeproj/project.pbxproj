@@ -81,6 +81,10 @@
 		1EE2378728E19D6A00A85DFA /* SimultaneousGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2378628E19D6A00A85DFA /* SimultaneousGestureView.swift */; };
 		1EE2378928E1A71200A85DFA /* ChainsGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2378828E1A71200A85DFA /* ChainsGestureView.swift */; };
 		1EE2378B28E2C83E00A85DFA /* SideBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2378A28E2C83E00A85DFA /* SideBarView.swift */; };
+		1EE2378D28E3003700A85DFA /* ThirdSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2378C28E3003700A85DFA /* ThirdSheetView.swift */; };
+		1EE2378F28E3004900A85DFA /* HalfSheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2378E28E3004900A85DFA /* HalfSheelView.swift */; };
+		1EE2379528E3333500A85DFA /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2379428E3333500A85DFA /* ViewExtensions.swift */; };
+		1EE2379728E3493600A85DFA /* JumpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2379628E3493600A85DFA /* JumpView.swift */; };
 		1EEEDDAE28B3B74B000578EF /* ScrollPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEDDAD28B3B74B000578EF /* ScrollPreferenceKey.swift */; };
 		1EF86F6F28B23FEB009BB624 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF86F6E28B23FEB009BB624 /* AccountView.swift */; };
 /* End PBXBuildFile section */
@@ -159,6 +163,10 @@
 		1EE2378628E19D6A00A85DFA /* SimultaneousGestureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimultaneousGestureView.swift; sourceTree = "<group>"; };
 		1EE2378828E1A71200A85DFA /* ChainsGestureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChainsGestureView.swift; sourceTree = "<group>"; };
 		1EE2378A28E2C83E00A85DFA /* SideBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarView.swift; sourceTree = "<group>"; };
+		1EE2378C28E3003700A85DFA /* ThirdSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdSheetView.swift; sourceTree = "<group>"; };
+		1EE2378E28E3004900A85DFA /* HalfSheelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfSheelView.swift; sourceTree = "<group>"; };
+		1EE2379428E3333500A85DFA /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
+		1EE2379628E3493600A85DFA /* JumpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpView.swift; sourceTree = "<group>"; };
 		1EEEDDAD28B3B74B000578EF /* ScrollPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPreferenceKey.swift; sourceTree = "<group>"; };
 		1EF86F6E28B23FEB009BB624 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -261,7 +269,6 @@
 				1EA55FF828B34CB8004645A5 /* HomeView.swift */,
 				1E7FB18A28B49F7B00FA6352 /* TabPageView.swift */,
 				1E7FB18C28B49F8E00FA6352 /* FeaturedItemView.swift */,
-				1EE2378A28E2C83E00A85DFA /* SideBarView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -406,10 +413,15 @@
 		1EA55FFA28B34D25004645A5 /* Componments */ = {
 			isa = PBXGroup;
 			children = (
+				1EE2378A28E2C83E00A85DFA /* SideBarView.swift */,
 				1EA55FFB28B34D38004645A5 /* TabItemView.swift */,
 				1EA55FFD28B350FE004645A5 /* NavigationBar.swift */,
 				1E39437828B5FB9D00D20030 /* DynamicPicView.swift */,
 				1E0DAF5628D04DDF004782EA /* SearchView.swift */,
+				1EE2378C28E3003700A85DFA /* ThirdSheetView.swift */,
+				1EE2378E28E3004900A85DFA /* HalfSheelView.swift */,
+				1EE2379428E3333500A85DFA /* ViewExtensions.swift */,
+				1EE2379628E3493600A85DFA /* JumpView.swift */,
 			);
 			path = Componments;
 			sourceTree = "<group>";
@@ -552,6 +564,7 @@
 				1E333A3128DB102600E59AA6 /* StrokeCornerRadiusStyleView.swift in Sources */,
 				1EE2378728E19D6A00A85DFA /* SimultaneousGestureView.swift in Sources */,
 				1EA4647128B15C6C00707ADB /* ContentView.swift in Sources */,
+				1EE2378F28E3004900A85DFA /* HalfSheelView.swift in Sources */,
 				1E4B791928B325EA00D7A1DE /* TabItem.swift in Sources */,
 				1E895A8F28D9B0BE0087FCFB /* MenuView.swift in Sources */,
 				1E541EA828DAD97A00320FC7 /* DeleteAndEditListView.swift in Sources */,
@@ -585,6 +598,7 @@
 				1E541EAE28DAE16300320FC7 /* ScrollListView.swift in Sources */,
 				1E41A8AF28BC810400C9603A /* Coin.swift in Sources */,
 				1EDB892A28D193D600B5BCBB /* MyButtonStyle.swift in Sources */,
+				1EE2379528E3333500A85DFA /* ViewExtensions.swift in Sources */,
 				1E39437728B5C8DA00D20030 /* AnimationStyle.swift in Sources */,
 				1E41A8AD28BC79A600C9603A /* Index.swift in Sources */,
 				1EA55FF928B34CB9004645A5 /* HomeView.swift in Sources */,
@@ -593,6 +607,7 @@
 				1E0DAF5728D04DDF004782EA /* SearchView.swift in Sources */,
 				1E8639E228BE342000222D64 /* Model.swift in Sources */,
 				1E895A7828D4C44F0087FCFB /* CustomNavigation.swift in Sources */,
+				1EE2379728E3493600A85DFA /* JumpView.swift in Sources */,
 				1EE2377728E16D1700A85DFA /* AppStateView.swift in Sources */,
 				1EA55FF728B33423004645A5 /* ExploreView.swift in Sources */,
 				1EE2377928E16F8000A85DFA /* DeviceRotationView.swift in Sources */,
@@ -611,6 +626,7 @@
 				1E4DF47828D2F792003B912C /* FocusPreferenceKey.swift in Sources */,
 				1E333A3328DB111D00E59AA6 /* TextFieldWithIconStyleView.swift in Sources */,
 				1E895A8928D9A64C0087FCFB /* DatePickerView.swift in Sources */,
+				1EE2378D28E3003700A85DFA /* ThirdSheetView.swift in Sources */,
 				1E895A7D28D4CA960087FCFB /* TimerView.swift in Sources */,
 				1E39437928B5FB9D00D20030 /* DynamicPicView.swift in Sources */,
 				1E895A8728D9A4E80087FCFB /* ToggleView.swift in Sources */,

@@ -14,4 +14,6 @@ class Model: ObservableObject {
     @Published var isShowAccountSheet = false
     @Published var isShowSearch = false
     @Published var cardSelectedId : UUID = UUID()
+    
+    @Published var isAbleShowSidebar = true
 }

@@ -15,28 +15,22 @@ struct ContentView: View {
     
     @AppStorage("selectTab") var selectionTab: Tab = .demo
     
-    var demoView = DemoView()
-    var homeView  = HomeView()
-    var exploreView = ExploreView()
-    var accountView = AccountView()
- 
     var body: some View {
-        
+       
         SideBarView{
             Color.white
         } content: {
             ZStack(alignment: .bottom) {
                 if selectionTab == .demo {
-                    demoView
+                    DemoView()
                 }
                 else if selectionTab == .house{
-                    homeView
+                    HomeView()
                 }else if selectionTab == .explore{
-                    exploreView
+                    ExploreView()
                 }else{
-                    accountView
+                    AccountView()
                 }
-                
                 TabItemView()
                     .offset(y: model.isShowCardDetail ? 200 : 0)
                     .zIndex(99)
@@ -44,7 +38,6 @@ struct ContentView: View {
             .safeAreaInset(edge: .bottom) {
                 Color.clear.frame(height: 70)
             }
-         
         }
         .edgesIgnoringSafeArea(.all)
         .enableInjection()

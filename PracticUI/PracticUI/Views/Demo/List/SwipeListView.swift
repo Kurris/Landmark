@@ -19,21 +19,22 @@ struct SwipeListView: View {
             List{
                 ForEach(users, id: \.self){ item in
                     Text("row #\(item)")
+                        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                            Button("Delete"){
+                                print("Delete...")
+                            }
+                            .tint(.red)
+                            
+                            Button("Marked"){
+                                print("Marked...")
+                            }
+                        }
                 }
-                .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                    Button("Delete"){
-                        print("Delete...")
-                    }
-                    .tint(.red)
-                    
-                    Button("Marked"){
-                        print("Marked...")
-                    }
-                }
-                .listRowSeparator(.hidden)
+               
+                //.listRowSeparator(.hidden)
 //                .listRowBackground(Color.blue)
             }
-            .listStyle(.grouped)
+            //.listStyle(.grouped)
         }
         .enableInjection()
     }

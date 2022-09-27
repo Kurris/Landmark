@@ -15,18 +15,20 @@ struct AppStateView: View {
     @Environment(\.scenePhase)  var scenePhase
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            .onChange(of: scenePhase, perform: { newValue in
-                if newValue == .active{
-                    print("active")
-                }else if newValue == .background{
-                    print("background")
-                }
-                else if newValue == .inactive{
-                    print("inactive")
-                }
-            })
-            .enableInjection()
+        VStack{
+            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+                .onChange(of: scenePhase, perform: { newValue in
+                    if newValue == .active{
+                        print("active")
+                    }else if newValue == .background{
+                        print("background")
+                    }
+                    else if newValue == .inactive{
+                        print("inactive")
+                    }
+                })
+        }
+        .enableInjection()
     }
 }
 
