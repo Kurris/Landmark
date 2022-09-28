@@ -14,6 +14,7 @@ struct AlertView: View {
     
     @State var isShowAlert = false
     @State var isShowAlert2 = false
+    @State var isShowAlert3 = false
     
     func confirm(){
        print("confirm")
@@ -43,16 +44,27 @@ struct AlertView: View {
             }
             
             Button("alert3"){
-                isShowAlert2.toggle()
+                isShowAlert3.toggle()
             }
-            .alert("message",isPresented: $isShowAlert2) {
-                Button("btn1"){}
+            .alert("message",isPresented: $isShowAlert3) {
+                Button("btn1"){
+                    simpleSuccess()
+                }
                 Button("btn2"){}
                 Button("btn3"){}
                 Button("btn4"){}
             }
+            
+            Button("alert4"){
+                UIAlertController.showAlert(title: "title", message: "message")
+            }
         }
         .enableInjection()
+    }
+    
+    func simpleSuccess() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
     }
 }
 

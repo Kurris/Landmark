@@ -25,7 +25,7 @@ struct DemoView: View {
                 List{
 
                     Section("App Interaction"){
-//                        NavigationLink {
+//                        JumpView {
 //                            AppStateView()
 //                        } label: {
 //                            Text("App State")
@@ -37,16 +37,31 @@ struct DemoView: View {
                             Text("App State")
                         }
                         
-                        NavigationLink {
+                        JumpView {
                             DeviceRotationView()
                         } label: {
                             Text("App Rotation")
+                        }
+                        
+                        JumpView {
+                           ShakeView()
+                        } label: {
+                            Text("Device Shake")
+                        }
+                    }
+                    
+                    
+                    Section("Camera"){
+                        JumpView{
+                            ScanView()
+                        }label: {
+                            Text("扫码")
                         }
                     }
 
 
                     Section("Keyboard"){
-                        NavigationLink {
+                        JumpView {
                             KeyboardAttachmentView()
                         } label: {
                             Text("自定义keyboard内容")
@@ -54,37 +69,37 @@ struct DemoView: View {
                     }
 
                     Section("Gesture"){
-                        NavigationLink {
+                        JumpView {
                             TapGestureView()
                         } label: {
                             Text("单击/双击...")
                         }
 
-                        NavigationLink {
+                        JumpView {
                             LongPressGestureView()
                         } label: {
                             Text("长按")
                         }
 
-                        NavigationLink {
+                        JumpView {
                             DragGestureView()
                         } label: {
                             Text("拖拽")
                         }
 
-                        NavigationLink {
+                        JumpView {
                             HighPriorityGestureView()
                         } label: {
                             Text("高优先级,并且覆盖")
                         }
 
-                        NavigationLink {
+                        JumpView {
                             SimultaneousGestureView()
                         } label: {
                             Text("同时触发")
                         }
 
-                        NavigationLink {
+                        JumpView {
                             ChainsGestureView()
                         } label: {
                             Text("手势链路")
@@ -94,7 +109,7 @@ struct DemoView: View {
 
                     Group{
                         Section(header:Text("Navigation")) {
-                            NavigationLink {
+                            JumpView {
                                 DefaultTab()
                             } label: {
                                 Image(systemName: "menucard")
@@ -102,21 +117,21 @@ struct DemoView: View {
                             }
 
 
-                            NavigationLink {
+                            JumpView {
                                 TabItemView().offset(y:-350)
                             } label: {
                                 Image(systemName: "menucard")
                                 Text("自定义tab")
                             }
 
-                            NavigationLink{
+                            JumpView{
                                 NavigationBar(title: "标题", hasScrolled: .constant(false))
                             } label:{
                                 Text("自定义header")
                             }
 
 
-                            NavigationLink{
+                            JumpView{
                                 CustomNavigation()
                                     .navigationBarBackButtonHidden(true)
                             } label:{
@@ -152,17 +167,24 @@ struct DemoView: View {
                                     .interactiveDismissDisabled()
                                 }
                             }
+                            
+                            
+                            JumpView{
+                                DifferentPopoverView()
+                            }label: {
+                                Text("不同的popover类型")
+                            }
                         }
                         .listRowSeparator(.hidden)
 
                         Section("Sticky") {
-                            NavigationLink {
+                            JumpView {
                                 StickyView()
                             } label: {
                                 Text("Sticky")
                             }
 
-                            NavigationLink {
+                            JumpView {
                                 MultiStickyView()
                             } label: {
                                 Text("Multi Sticky")
@@ -182,13 +204,13 @@ struct DemoView: View {
 
 
                         Section("Progress") {
-                            NavigationLink {
+                            JumpView {
                                 DefaultProgressView()
                             } label: {
                                 Text("默认进度条")
                             }
 
-                            NavigationLink {
+                            JumpView {
                                 CustomProgressView()
                             } label: {
                                 Text("自定义进度条")
@@ -197,7 +219,7 @@ struct DemoView: View {
 
 
                         Section("Timer"){
-                            NavigationLink{
+                            JumpView{
                                 TimerView()
                             }label: {
                                 Text("定时器使用")
@@ -206,46 +228,46 @@ struct DemoView: View {
 
 
                         Section("Components"){
-                            NavigationLink {
+                            JumpView {
                                 PickerView()
                             } label: {
                                 Text("Picker")
                             }
 
 
-                            NavigationLink {
+                            JumpView {
                                 ToggleView()
                             } label: {
                                 Text("Toggle")
                             }
 
 
-                            NavigationLink {
+                            JumpView {
                                 DatePickerView()
                             } label: {
                                 Text("DatePicker")
                             }
 
-                            NavigationLink {
+                            JumpView {
                                 SliderView()
                             } label: {
                                 Text("Slider")
                             }
 
 
-                            NavigationLink {
+                            JumpView {
                                 StepperView()
                             } label: {
                                 Text("Stepper")
                             }
 
-                            NavigationLink {
+                            JumpView {
                                 MenuView()
                             } label: {
                                 Text("Menu")
                             }
 
-                            NavigationLink {
+                            JumpView {
                                 ContextMenuView()
                             } label: {
                                 Text("ContextMenu")
@@ -253,20 +275,20 @@ struct DemoView: View {
                         }
 
                         Section("Notifications"){
-                            NavigationLink {
+                            JumpView {
                                 NotificationView()
                             } label: {
                                 Text("Notification")
                             }
 
 
-                            NavigationLink {
+                            JumpView {
                                 AlertView()
                             } label: {
                                 Text("Alert")
                             }
 
-                            NavigationLink {
+                            JumpView {
                                 ConfirmationDialogView()
                             } label: {
                                 Text("ConfirmationDialog")
@@ -275,33 +297,33 @@ struct DemoView: View {
 
 
                         Section("List"){
-                            NavigationLink {
+                            JumpView {
                                 DeleteAndEditListView()
                             } label: {
                                 Text("Delete/Edit list")
                             }
 
 
-                            NavigationLink {
+                            JumpView {
                                 SwipeListView()
                             } label: {
                                 Text("Swipe list")
                             }
 
 
-                            NavigationLink {
+                            JumpView {
                                 ExpandListView()
                             } label: {
                                 Text("Expand list")
                             }
 
-                            NavigationLink {
+                            JumpView {
                                 ScrollListView()
                             } label: {
                                 Text("Scroll list")
                             }
 
-                            NavigationLink {
+                            JumpView {
                                 RadiusListView()
                             } label: {
                                 Text("Radius list")
@@ -309,13 +331,13 @@ struct DemoView: View {
                         }
 
                         Section("Badge"){
-                            NavigationLink {
+                            JumpView {
                                 DefaultBadgeView()
                             } label: {
                                 Text("Default badge")
                             }
 
-                            NavigationLink {
+                            JumpView {
                                 BadgeInListView()
                             } label: {
                                 Text("Badge in list")
@@ -324,19 +346,19 @@ struct DemoView: View {
                     }
 
                     Section("Custom Style"){
-                        NavigationLink {
+                        JumpView {
                             CheckToggleStyleView()
                         } label: {
                             Text("Toggle:CheckBox")
                         }
 
-                        NavigationLink {
+                        JumpView {
                             TextFieldWithIconStyleView()
                         } label: {
                             Text("TextField:WithIcon")
                         }
 
-                        NavigationLink {
+                        JumpView {
                             StrokeCornerRadiusStyleView()
                         } label: {
                             Text("Modifier:StrokeCornerRadius")
@@ -345,19 +367,41 @@ struct DemoView: View {
 
 
                     Section("Input"){
-                        NavigationLink {
+                        JumpView {
                             CustomSubmitButtonView()
                         } label: {
                             Text("自定义按钮")
                         }
 
 
-                        NavigationLink {
+                        JumpView {
                             OnSubmitView()
                         } label: {
                             Text("按钮触发动作")
                         }
                     }
+                    
+                    Section("Geometry"){
+                        JumpView{
+                            MatchedGeometryEffectView()
+                        }label: {
+                            Text("几何匹配")
+                        }
+                        
+                        
+                        JumpView{
+                            AnchorPreferenceView()
+                        }label: {
+                            Text("锚击位置")
+                        }
+                        
+                        JumpView{
+                            GeometryReaderView()
+                        }label: {
+                            Text("几何阅读")
+                        }
+                    }
+                    
                 }
                 //.listStyle(.grouped)
                 //.listStyle(.inset)

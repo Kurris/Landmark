@@ -6,61 +6,110 @@
 //
 
 import SwiftUI
+import Inject
 
 
-struct Handle : View {
-    private let handleThickness = CGFloat(5.0)
-    var body: some View {
-        RoundedRectangle(cornerRadius: handleThickness / 2.0)
-            .frame(width: 40, height: handleThickness)
-            .foregroundColor(Color.secondary)
-            .padding(5)
-    }
-}
+struct HalfSheelView<Content: View> : View {
+    
+    @ObserveInjection var inject
 
-struct HalfModel<Content: View>: View {
-    @State var dragY = UIScreen.main.bounds.height / 2
     @Binding var show: Bool
-    var content: () -> Content
-    var body: some View {
-        let maxHeight = UIScreen.main.bounds.height
-        ZStack {
-            if show {
-                Color.black.opacity(0.3)
-                    .edgesIgnoringSafeArea(.all)
-                    .onTapGesture {
-                        show = false
-                    }.onAppear(perform: {
-                        print("appear")
-                        dragY = maxHeight / 2
-                    })
-            }
-            
-            VStack {
-                Handle()
-                self.content()
-                // 如果content是Picker类控件会和drag产生冲突，加上下面这句就不会了
-                    .onTapGesture {}
-            }.background(Color.white)
-            .cornerRadius(10.0)
-            .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.13), radius: 10.0)
-            .offset(y: show ? dragY : maxHeight)
-            .gesture(
-                DragGesture()
-                    .onChanged({ gesture in
-                        dragY = gesture.location.y
-                    })
-                    .onEnded({gesture in
-                        if dragY > maxHeight * 0.7 {
-                            dragY = maxHeight
-                            show = false
-                        } else {
-                            dragY = maxHeight / 2
-                        }
-                    })
-            )
-            
+    let outContent : Content
+    
+    @State var offsetY = UIScreen.main.bounds.height / 2
+    
+    init(show: Binding<Bool>, @ViewBuilder content: ()->Content ){
+        _show = show
+        outContent = content()
+    }
+    
+    func toShow() {
+        print("show")
+        withAnimation(.slide){
+            offsetY = 0.0
         }
+    }
+    
+    func toClose() {
+        print("close")
+        withAnimation(.slide){
+            offsetY = UIScreen.main.bounds.height / 2
+            show = false
+        }
+    }
+    
+    var body: some View {
+        ZStack{
+            if show {
+                Color.black.opacity(0.2)
+                    .padding(0)
+                    .onTapGesture {
+                        toClose()
+                    }
+            }
+            VStack{
+                Spacer()
+                showContent
+            }
+        }
+        .onChange(of: show, perform: { newValue in
+            if show {
+                toShow()
+            }
+        })
+        .frame(maxWidth : .infinity , maxHeight:  .infinity)
+        .edgesIgnoringSafeArea(.all)
+        .enableInjection()
+    }
+    
+    
+    var showContent : some View{
+        VStack{
+            HStack{
+                RoundedRectangle(cornerRadius: CGFloat(5.0) / 2.0)
+                    .frame(width: 40, height: CGFloat(5.0))
+                    .foregroundColor(Color.secondary)
+                    
+            }
+            .frame(maxWidth : .infinity , maxHeight: .infinity)
+            .frame(height : 5)
+            .padding(.vertical , 5)
+
+            outContent
+            Spacer()
+        }
+        .frame(maxWidth : .infinity,maxHeight:  .infinity)
+        .frame(height: UIScreen.main.bounds.height / 2)
+        .background(Color.white)
+        .cornerRadius(18.0)
+        .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.13), radius: 10.0)
+        .offset(y: offsetY)
+        .gesture(
+            DragGesture()
+                .onChanged({ gesture in
+                    guard gesture.location.y > 0  else {return}
+                    
+                    if gesture.startLocation.y > 20 {
+                        return
+                    }
+                    
+                    withAnimation(.slide){
+                        offsetY = gesture.location.y
+                    }
+                })
+                .onEnded({gesture in
+                    let limit = UIScreen.main.bounds.height / 4 * 0.7
+                    
+                    withAnimation(.slide) {
+                        if gesture.translation.height > limit {
+                            toClose()
+                        }
+                        else {
+                            toShow()
+                        }
+                    }
+                })
+        )
     }
 }
 

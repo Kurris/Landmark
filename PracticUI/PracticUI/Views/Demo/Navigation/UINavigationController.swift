@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// 添加此代码,可以在 .navigationBarBackButtonHidden(true)后仍然可以使用手势返回
+///添加此代码,可以在 .navigationBarBackButtonHidden(true)后仍然可以使用手势返回
 extension UINavigationController: UIGestureRecognizerDelegate {
     override open func viewDidLoad() {
         super.viewDidLoad()

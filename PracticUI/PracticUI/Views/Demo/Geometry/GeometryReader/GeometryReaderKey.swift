@@ -1,14 +1,14 @@
 //
-//  FocusPreferenceKey.swift
+//  GeometryReaderKey.swift
 //  PracticUI
 //
-//  Created by 李国扬 on 2022/9/15.
+//  Created by 李国扬 on 2022/9/28.
 //
 
 import SwiftUI
 
-struct FocusPreferenceKey: PreferenceKey {
-
+struct GeometryReaderKey: PreferenceKey  {
+    
     static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
         value = nextValue()
     }

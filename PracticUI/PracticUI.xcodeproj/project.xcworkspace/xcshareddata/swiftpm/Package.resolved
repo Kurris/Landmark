@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "CodeScanner",
+        "repositoryURL": "https://github.com/twostraws/CodeScanner",
+        "state": {
+          "branch": null,
+          "revision": "c7859712034a08bb5a018fbe8751c1f1edc4b248",
+          "version": "2.2.1"
+        }
+      },
+      {
         "package": "Inject",
         "repositoryURL": "https://github.com/krzysztofzablocki/Inject.git",
         "state": {

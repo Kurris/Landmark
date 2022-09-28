@@ -17,7 +17,7 @@ struct ContentView: View {
     
     var body: some View {
        
-        SideBarView{
+        SideBarView(isAbleShow: $model.isAbleShowSidebar){
             Color.white
         } content: {
             ZStack(alignment: .bottom) {
@@ -31,9 +31,9 @@ struct ContentView: View {
                 }else{
                     AccountView()
                 }
-                TabItemView()
-                    .offset(y: model.isShowCardDetail ? 200 : 0)
-                    .zIndex(99)
+//                TabItemView()
+//                    .offset(y: model.isShowCardDetail ? 200 : 0)
+//                    .zIndex(99)
             }
             .safeAreaInset(edge: .bottom) {
                 Color.clear.frame(height: 70)
