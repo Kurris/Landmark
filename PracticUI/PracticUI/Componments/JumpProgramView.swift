@@ -29,10 +29,16 @@ struct JumpProgramView<Label:View, Destination:View> : View {
         NavigationLink(isActive: $isActive, destination: {
             linkDestination
                 .onAppear {
-                    model.isAbleShowSidebar = false
+                    withAnimation {
+                        model.isAbleShowSidebar = false
+                        model.isShowCustomTabbar = false
+                    }
                 }
                 .onDisappear {
-                    model.isAbleShowSidebar = true
+                    withAnimation {
+                        model.isAbleShowSidebar = true
+                        model.isShowCustomTabbar = true
+                    }
                 }
         }, label: {
             linkLabel

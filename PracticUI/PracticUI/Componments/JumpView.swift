@@ -26,10 +26,16 @@ struct JumpView<Label:View, Destination:View> : View {
         NavigationLink {
             linkDestination
                 .onAppear {
-                    model.isAbleShowSidebar = false
+                    withAnimation {
+                        model.isAbleShowSidebar = false
+                        model.isShowCustomTabbar = false
+                    }
                 }
                 .onDisappear {
-                    model.isAbleShowSidebar = true
+                    withAnimation {
+                        model.isAbleShowSidebar = true
+                        model.isShowCustomTabbar = true
+                    }
                 }
         } label: {
             linkLabel

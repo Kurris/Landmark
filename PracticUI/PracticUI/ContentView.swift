@@ -31,9 +31,10 @@ struct ContentView: View {
                 }else{
                     AccountView()
                 }
-//                TabItemView()
-//                    .offset(y: model.isShowCardDetail ? 200 : 0)
-//                    .zIndex(99)
+
+                TabItemView()
+                    .offset(y: model.isShowCustomTabbar ? 0 : 200)
+                    .zIndex(99)
             }
             .safeAreaInset(edge: .bottom) {
                 Color.clear.frame(height: 70)
@@ -41,6 +42,29 @@ struct ContentView: View {
         }
         .edgesIgnoringSafeArea(.all)
         .enableInjection()
+        
+            
+//        ZStack(alignment: .bottom) {
+//            if selectionTab == .demo {
+//                DemoView()
+//            }
+//            else if selectionTab == .house{
+//                HomeView()
+//            }else if selectionTab == .explore{
+//                ExploreView()
+//            }else{
+//                AccountView()
+//            }
+//
+//            TabItemView()
+//                .offset(y: model.isShowCustomTabbar ? 0 : 200)
+//                .zIndex(99)
+//        }
+//        .safeAreaInset(edge: .bottom) {
+//            Color.clear.frame(height: 70)
+//        }
+//        .edgesIgnoringSafeArea(.all)
+//        .enableInjection()
     }
 }
 

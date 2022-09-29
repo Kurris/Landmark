@@ -22,15 +22,15 @@ struct ScanView: View {
     
     let vibrateGenerator = UINotificationFeedbackGenerator()
     
-    func getDevice()->AVCaptureDevice{
-        let device = AVCaptureDevice.default(for: .video)
-        return device!
-    }
+//    func getDevice()->AVCaptureDevice{
+//        let device = AVCaptureDevice.default(for: .video)
+//        return device!
+//    }
     
     var body: some View {
         VStack{
             CodeScannerView(codeTypes: [.qr,.ean8, .ean13, .pdf417],scanMode: .continuous,scanInterval: 2.0,showViewfinder:showViewfinder, shouldVibrateOnSuccess: true,isTorchOn: isTorchOn,
-                            isGalleryPresented: $isGalleryPresented,videoCaptureDevice:getDevice()) { response in
+                            isGalleryPresented: $isGalleryPresented) { response in
                 
                 switch response {
                 case .success(let result):

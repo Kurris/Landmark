@@ -15,5 +15,7 @@ class Model: ObservableObject {
     @Published var isShowSearch = false
     @Published var cardSelectedId : UUID = UUID()
     
+    @Published var isShowCustomTabbar = true
+    
     @Published var isAbleShowSidebar = true
 }

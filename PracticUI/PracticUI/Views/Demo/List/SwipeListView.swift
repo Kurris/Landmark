@@ -30,7 +30,7 @@ struct SwipeListView: View {
                             }
                         }
                 }
-               
+                
                 //.listRowSeparator(.hidden)
 //                .listRowBackground(Color.blue)
             }

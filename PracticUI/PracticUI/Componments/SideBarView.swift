@@ -11,8 +11,7 @@ import Inject
 struct SideBarView<SidebarContent: View, Content: View>: View {
     
     @ObserveInjection var inject
-    
-    
+     
     @Binding var isAbleShowSidebar : Bool
     let sidebarContent: SidebarContent
     let mainContent: Content
@@ -39,10 +38,11 @@ struct SideBarView<SidebarContent: View, Content: View>: View {
                         .opacity(dragWidth/20 * 0.01)
                         .onTapGesture {
                             withAnimation(.slide) {
-                                //sidebarWidth = 0.0
+                                dragWidth = .zero
                             }
                         }
                 }
+                .gesture(openDrag)
                 .offset(x:dragWidth)
         }
         .onChange(of: isOpenDrag, perform: { _ in
@@ -61,7 +61,6 @@ struct SideBarView<SidebarContent: View, Content: View>: View {
                 endDragWhenClose()
             }
         })
-        .gesture(openDrag)
         .enableInjection()
     }
     
@@ -96,7 +95,7 @@ struct SideBarView<SidebarContent: View, Content: View>: View {
     }
     
     var openDrag :  some Gesture {
-        DragGesture()
+        DragGesture(minimumDistance: 30, coordinateSpace: .local)
             .updating($isOpenDrag) { gesture, state, transaction in
                 if gesture.startLocation.x < 20 {
                     state  = true
@@ -105,15 +104,14 @@ struct SideBarView<SidebarContent: View, Content: View>: View {
             .onChanged({ gesture in
                 let maxWidth = UIScreen.main.bounds.width/2 + UIScreen.main.bounds.width / 4
                 let translationWidth = gesture.translation.width
-                
+
                 guard  gesture.startLocation.x>0
                         && isOpenDrag
                         && gesture.startLocation.x <= maxWidth
                         &&  translationWidth > 0
                         && isAbleShowSidebar
                         && translationWidth <= maxWidth else { return }
-                
-                
+
                 withAnimation(.slide) {
                     dragWidth = gesture.translation.width
                 }
@@ -121,14 +119,14 @@ struct SideBarView<SidebarContent: View, Content: View>: View {
     }
     
     var closeDrag : some Gesture {
-        DragGesture(minimumDistance: 10)
+        DragGesture()
             .updating($isCloseDrag) { gesture, state, transaction in
                 state  = true
             }
             .onChanged{ gesture in
                 let maxWidth = UIScreen.main.bounds.width/2 + UIScreen.main.bounds.width / 4
                 let width = maxWidth + gesture.translation.width
-                
+
                 if dragWidth > 0 && width <= maxWidth {
                     withAnimation(.slide) {
                         dragWidth = width
