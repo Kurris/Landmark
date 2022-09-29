@@ -12,12 +12,14 @@ struct SideBarView<SidebarContent: View, Content: View>: View {
     
     @ObserveInjection var inject
     
+    
+    @Binding var isAbleShowSidebar : Bool
     let sidebarContent: SidebarContent
     let mainContent: Content
     
-    @Binding var isAbleShowSidebar : Bool
-    @State var sidebarWidth: CGFloat = CGFloat.zero
-    @State var viewState:CGSize = .zero
+    @GestureState var isOpenDrag = false
+    @GestureState var isCloseDrag = false
+    @State var dragWidth = CGFloat.zero
     
     init(isAbleShow : Binding<Bool> , @ViewBuilder sidebar: ()->SidebarContent, @ViewBuilder content: ()->Content) {
         _isAbleShowSidebar = isAbleShow
@@ -28,78 +30,110 @@ struct SideBarView<SidebarContent: View, Content: View>: View {
     var body: some View {
         ZStack(alignment: .leading) {
             sidebarContent
-                .offset(x: sidebarWidth > 0 ? 0 : -1 * sidebarWidth, y: 0)
+                .offset(x: dragWidth > 0 ? 0 : -1 * dragWidth, y: 0)
                 .gesture(closeDrag)
             
             mainContent
                 .overlay {
                     Color.black
-                        .opacity(sidebarWidth/4 * 0.01)
+                        .opacity(dragWidth/20 * 0.01)
                         .onTapGesture {
                             withAnimation(.slide) {
-                                sidebarWidth = .zero
+                                //sidebarWidth = 0.0
                             }
                         }
                 }
-                .offset(x: sidebarWidth > 10 ? sidebarWidth : 0, y: 0)
+                .offset(x:dragWidth)
         }
+        .onChange(of: isOpenDrag, perform: { _ in
+            if isOpenDrag{
+                if dragWidth > 0{
+                    let generator = UINotificationFeedbackGenerator()
+                    generator.notificationOccurred(.success)
+                }
+            }
+            else{
+                endDragWhenOpen()
+            }
+        })
+        .onChange(of: isCloseDrag, perform: { _ in
+            if !isCloseDrag{
+                endDragWhenClose()
+            }
+        })
         .gesture(openDrag)
         .enableInjection()
     }
     
+    func endDragWhenOpen(){
+        let limit = UIScreen.main.bounds.width / 4 * 0.7
+        if dragWidth < limit{
+            withAnimation(.slide) {
+                dragWidth = 0.0
+            }
+        }
+        
+        if(dragWidth >= limit){
+            withAnimation(.slide) {
+                dragWidth = UIScreen.main.bounds.width/2 + UIScreen.main.bounds.width / 4
+            }
+        }
+    }
+    
+    func endDragWhenClose(){
+        let limit = UIScreen.main.bounds.width / 4 * 0.7
+        let maxWidth = UIScreen.main.bounds.width/2 + UIScreen.main.bounds.width / 4
+        
+        if maxWidth - dragWidth > limit {
+            withAnimation(.slide) {
+                dragWidth = .zero
+            }
+        }else{
+            withAnimation(.slide) {
+                dragWidth = maxWidth
+            }
+        }
+    }
     
     var openDrag :  some Gesture {
-        DragGesture(minimumDistance: 10)
+        DragGesture()
+            .updating($isOpenDrag) { gesture, state, transaction in
+                if gesture.startLocation.x < 20 {
+                    state  = true
+                }
+            }
             .onChanged({ gesture in
-                guard gesture.translation.width > 0 && sidebarWidth != 225 && isAbleShowSidebar  else { return }
+                let maxWidth = UIScreen.main.bounds.width/2 + UIScreen.main.bounds.width / 4
+                let translationWidth = gesture.translation.width
                 
-                if gesture.startLocation.x < 10 {
-                    if gesture.translation.width <= 225 {
-                        withAnimation(.slide) {
-                            sidebarWidth = gesture.translation.width
-                        }
-                    }
-                }
-            })
-            .onEnded({ gesture in
-                if sidebarWidth < 100{
-                    withAnimation(.slide) {
-                        sidebarWidth = .zero
-                    }
-                }
+                guard  gesture.startLocation.x>0
+                        && isOpenDrag
+                        && gesture.startLocation.x <= maxWidth
+                        &&  translationWidth > 0
+                        && isAbleShowSidebar
+                        && translationWidth <= maxWidth else { return }
                 
-                if(sidebarWidth >= 100){
-                    withAnimation(.slide) {
-                        sidebarWidth = 225
-                    }
+                
+                withAnimation(.slide) {
+                    dragWidth = gesture.translation.width
                 }
             })
     }
     
     var closeDrag : some Gesture {
         DragGesture(minimumDistance: 10)
-            .onChanged({ gesture in
+            .updating($isCloseDrag) { gesture, state, transaction in
+                state  = true
+            }
+            .onChanged{ gesture in
+                let maxWidth = UIScreen.main.bounds.width/2 + UIScreen.main.bounds.width / 4
+                let width = maxWidth + gesture.translation.width
                 
-                let width = 225 + gesture.translation.width
-                if width <= 225 {
+                if dragWidth > 0 && width <= maxWidth {
                     withAnimation(.slide) {
-                        sidebarWidth = width
+                        dragWidth = width
                     }
                 }
-                
-            })
-            .onEnded({ gesture in
-                if gesture.translation.width > -80 {
-                    withAnimation(.slide) {
-                        sidebarWidth = 225
-                    }
-                }
-                
-                if gesture.translation.width <= -80 {
-                    withAnimation(.slide) {
-                        sidebarWidth = .zero
-                    }
-                }
-            })
+            }
     }
 }

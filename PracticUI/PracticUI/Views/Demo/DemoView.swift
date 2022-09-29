@@ -8,6 +8,7 @@
 import SwiftUI
 import Inject
 import Alamofire
+import CodeScanner
 
 
 struct DemoView: View {
@@ -25,11 +26,6 @@ struct DemoView: View {
                 List{
 
                     Section("App Interaction"){
-//                        JumpView {
-//                            AppStateView()
-//                        } label: {
-//                            Text("App State")
-//                        }
 
                         JumpView {
                             AppStateView()
@@ -148,7 +144,15 @@ struct DemoView: View {
                             } label: {
                                 Text("显示默认Popover")
                             }.popover(isPresented: $isShowPopover) {
-
+                                CodeScannerView(codeTypes: [.qr]) { response in
+                                    print(response)
+                                    switch response {
+                                    case .success(let result):
+                                        print("Found code: \(result.string)")
+                                    case .failure(let error):
+                                        print(error.localizedDescription)
+                                    }
+                                }
                             }
 
                             Button {
@@ -292,6 +296,12 @@ struct DemoView: View {
                                 ConfirmationDialogView()
                             } label: {
                                 Text("ConfirmationDialog")
+                            }
+                            
+                            JumpView{
+                                ShakeFeedbackView()
+                            }label: {
+                                Text("Shake Feedback")
                             }
                         }
 

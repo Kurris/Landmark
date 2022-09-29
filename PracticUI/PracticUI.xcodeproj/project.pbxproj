@@ -35,6 +35,7 @@
 		1E541EB728DB00F400320FC7 /* ConfirmationDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E541EB628DB00F400320FC7 /* ConfirmationDialogView.swift */; };
 		1E541EBA28DB091600320FC7 /* CheckToggleStyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E541EB928DB091600320FC7 /* CheckToggleStyleView.swift */; };
 		1E541EBC28DB092800320FC7 /* CheckToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E541EBB28DB092800320FC7 /* CheckToggleStyle.swift */; };
+		1E5F687128E54DFD00254BDB /* ShakeFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5F687028E54DFD00254BDB /* ShakeFeedbackView.swift */; };
 		1E7FB18828B48DEE00FA6352 /* AnimatableFontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7FB18728B48DEE00FA6352 /* AnimatableFontModifier.swift */; };
 		1E7FB18B28B49F7B00FA6352 /* TabPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7FB18A28B49F7B00FA6352 /* TabPageView.swift */; };
 		1E7FB18D28B49F8E00FA6352 /* FeaturedItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7FB18C28B49F8E00FA6352 /* FeaturedItemView.swift */; };
@@ -127,6 +128,7 @@
 		1E541EB628DB00F400320FC7 /* ConfirmationDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationDialogView.swift; sourceTree = "<group>"; };
 		1E541EB928DB091600320FC7 /* CheckToggleStyleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckToggleStyleView.swift; sourceTree = "<group>"; };
 		1E541EBB28DB092800320FC7 /* CheckToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckToggleStyle.swift; sourceTree = "<group>"; };
+		1E5F687028E54DFD00254BDB /* ShakeFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeFeedbackView.swift; sourceTree = "<group>"; };
 		1E7FB18728B48DEE00FA6352 /* AnimatableFontModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableFontModifier.swift; sourceTree = "<group>"; };
 		1E7FB18A28B49F7B00FA6352 /* TabPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabPageView.swift; sourceTree = "<group>"; };
 		1E7FB18C28B49F8E00FA6352 /* FeaturedItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedItemView.swift; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 				1E895A9328D9B9F60087FCFB /* NotificationView.swift */,
 				1E541EA428DABD2D00320FC7 /* AlertView.swift */,
 				1E541EB628DB00F400320FC7 /* ConfirmationDialogView.swift */,
+				1E5F687028E54DFD00254BDB /* ShakeFeedbackView.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -684,6 +687,7 @@
 				1EE237B428E43DAE00A85DFA /* SplashPageView.swift in Sources */,
 				1E39437528B5B91D00D20030 /* ItemDetailView.swift in Sources */,
 				1E0DAF5728D04DDF004782EA /* SearchView.swift in Sources */,
+				1E5F687128E54DFD00254BDB /* ShakeFeedbackView.swift in Sources */,
 				1E8639E228BE342000222D64 /* Model.swift in Sources */,
 				1E895A7828D4C44F0087FCFB /* CustomNavigation.swift in Sources */,
 				1EE2379728E3493600A85DFA /* JumpView.swift in Sources */,
@@ -848,6 +852,7 @@
 				DEVELOPMENT_TEAM = 25GZ6QQS2R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -858,10 +863,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = (
-					"-Xlinker",
-					"-interposable",
-				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = ligy.PracticUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -881,6 +883,7 @@
 				DEVELOPMENT_TEAM = 25GZ6QQS2R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -891,10 +894,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = (
-					"-Xlinker",
-					"-interposable",
-				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = ligy.PracticUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
