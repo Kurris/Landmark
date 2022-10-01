@@ -17,9 +17,9 @@ struct TabItem: Identifiable {
     
     static let `default`: [TabItem] = [
         TabItem(name: Tab.demo.description(), icon: "lasso.and.sparkles", tab: .demo),
-        TabItem(name: Tab.house.description(), icon: "house", tab: .house),
+        //TabItem(name: Tab.house.description(), icon: "house", tab: .house),
         TabItem(name: Tab.explore.description(), icon: "magnifyingglass", tab: .explore),
-        TabItem(name: Tab.account.description(), icon: "person", tab: .account),
+        //TabItem(name: Tab.account.description(), icon: "person", tab: .account),
     ]
 }
 

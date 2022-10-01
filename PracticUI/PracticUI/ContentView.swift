@@ -13,65 +13,31 @@ struct ContentView: View {
     @ObserveInjection var inject
     @EnvironmentObject var model: Model
     
-    @AppStorage("selectTab") var selectionTab: Tab = .demo
+    @AppStorage("selectTab") var selectionTab: Tab = .explore
     
     var body: some View {
-       
-        SideBarView(isAbleShow: $model.isAbleShowSidebar){
-            Color.white
-        } content: {
-            ZStack(alignment: .bottom) {
-                if selectionTab == .demo {
-                    DemoView()
-                }
-                else if selectionTab == .house{
-                    HomeView()
-                }else if selectionTab == .explore{
-                    ExploreView()
-                }else{
-                    AccountView()
-                }
-
-                TabItemView()
-                    .offset(y: model.isShowCustomTabbar ? 0 : 200)
-                    .zIndex(99)
-            }
-            .safeAreaInset(edge: .bottom) {
-                Color.clear.frame(height: 70)
-            }
-        }
-        .edgesIgnoringSafeArea(.all)
-        .enableInjection()
         
+        ZStack(alignment: .bottom){
+            SplashPageView(isShow: $model.isShowSplashPage).zIndex(999)
             
-//        ZStack(alignment: .bottom) {
-//            if selectionTab == .demo {
-//                DemoView()
-//            }
-//            else if selectionTab == .house{
-//                HomeView()
-//            }else if selectionTab == .explore{
-//                ExploreView()
-//            }else{
-//                AccountView()
-//            }
-//
-//            TabItemView()
-//                .offset(y: model.isShowCustomTabbar ? 0 : 200)
-//                .zIndex(99)
-//        }
-//        .safeAreaInset(edge: .bottom) {
-//            Color.clear.frame(height: 70)
-//        }
-//        .edgesIgnoringSafeArea(.all)
-//        .enableInjection()
-    }
-}
-
-class ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            ContentView()
+            SideBarView(isAbleShow: $model.isAbleShowSidebar){
+                AccountView()
+            } content: {
+                ZStack {
+                    if selectionTab == .demo {
+                        DemoView()
+                    }
+                    else if selectionTab == .explore{
+                        ExploreView()
+                    }
+                    
+                    TabItemView()
+                        .offset(y: model.isShowCustomTabbar ? 0 : 200)
+                        .zIndex(99)
+                }
+            }
         }
+        .ignoresSafeArea()
+        .enableInjection()
     }
 }

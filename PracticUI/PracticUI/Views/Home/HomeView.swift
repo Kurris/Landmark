@@ -54,10 +54,6 @@ struct HomeView: View {
            }
            //创建坐标系空间
            .coordinateSpace(name: "scroll")
-           //生成一个高度70的安全区域
-           .safeAreaInset(edge: .top, content: {
-               Color.clear.frame(height: 70)
-           })
            .sheet(isPresented: $model.isShowAccountSheet) {
                AccountView()
            }

@@ -19,7 +19,6 @@ struct TabItemView: View {
         HStack {
             ForEach(TabItem.default){item in
                 Button {
-                    //dampingFraction 阻尼,动感,值越大,效果越小
                     withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
                         activeIdx = item.id
                         selectionTab = item.tab
@@ -71,14 +70,6 @@ struct TabItemView: View {
             .cornerRadius(5)
             .offset(x: x + offect,y:-18)
        }
-}
-
-
-
-struct Tab_Previews: PreviewProvider {
-    static var previews: some View {
-        TabItemView()
-    }
 }
 
 struct MyTextPreferenceData {

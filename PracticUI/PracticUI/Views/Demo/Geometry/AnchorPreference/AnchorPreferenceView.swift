@@ -55,9 +55,3 @@ struct AnchorPreferenceView: View {
             .offset(x: x + offect,y:-18)
        }
 }
-
-struct AnchorPreferenceView_Previews: PreviewProvider {
-    static var previews: some View {
-        AnchorPreferenceView()
-    }
-}

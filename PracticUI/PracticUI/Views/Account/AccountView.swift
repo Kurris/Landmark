@@ -14,6 +14,8 @@ struct AccountView: View {
     @State private var isDeleted = false
     @State private var isPinned = false
     
+    @State var isFullscreenScan = false
+    
     @State private var coins: [Coin] = []
     
     @ObserveInjection var inject
@@ -87,18 +89,29 @@ struct AccountView: View {
                 }
             }
             .listStyle(.automatic)
-            .navigationTitle("Account")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar{
+                ToolbarItem(placement:  .navigationBarTrailing) {
+                    
+                    
+                    Image(systemName: "qrcode.viewfinder").foregroundColor(.black)
+                        .fullScreenCover(isPresented: $isFullscreenScan) {
+                        ScanView()
+                    }
+                    .onTapGesture {
+                        
+                        isFullscreenScan = true
+                    }
+                }
+            }
             .refreshable {
                 await  getCoinsAsync()
             }
             .task {
                 await  getCoinsAsync()
             }
-            .safeAreaInset(edge: .bottom) {
-                Color.clear.frame(height: 170)
-            }.enableInjection()
-            
         }
+        .enableInjection()
     }
     
     func getCoinsAsync() async {
@@ -228,10 +241,3 @@ struct AccountView: View {
     }
 }
 
-
-struct AccountView_Previews: PreviewProvider {
-    static var previews: some View {
-        AccountView()
-            .previewInterfaceOrientation(.portrait)
-    }
-}

@@ -25,6 +25,7 @@ struct JumpView<Label:View, Destination:View> : View {
     var body: some View {
         NavigationLink {
             linkDestination
+                .navigationBarTitleDisplayMode(.inline)
                 .onAppear {
                     withAnimation {
                         model.isAbleShowSidebar = false

@@ -26,15 +26,13 @@ struct ExploreView: View {
     }
     
     @State var popover : Bool  = false
-    
     @FocusState var currentSelectField : SelectField?
  
     var body: some View {
-  
         VStack{
+            Text("**登陆界面**")
             Group{
-                Text("**登陆界面**")
-
+               
                 TextField("email", text: $email)
                     .inputStyle(icon: "mail")
                     .textContentType(.emailAddress)
@@ -53,7 +51,7 @@ struct ExploreView: View {
                     .shadow(color: currentSelectField == .password
                             ? Color.primary.opacity(0.3)
                             : .clear, radius: 10, x: 0, y: 3)
-                
+
                 Button("Open Popover") {
                     popover = true
                 }
@@ -68,16 +66,7 @@ struct ExploreView: View {
             .padding()
         }
         .frame(maxWidth:.infinity , maxHeight: .infinity)
-        .frame(height : 500)
-        .background(Color.pink.opacity(0.3))
         .strokeCornerRadiusStyle()
-        .padding()
         .enableInjection()
-    }
-}
-
-struct Explore_Previews: PreviewProvider {
-    static var previews: some View {
-        ExploreView()
     }
 }

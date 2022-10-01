@@ -42,7 +42,7 @@ struct ScanView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
-        .ignoresSafeArea()
+        .ignoresSafeArea(.all,edges: [.bottom])
 //        .safeAreaInset(edge: .top){
 //            HStack{
 //                VStack{
@@ -76,7 +76,7 @@ struct ScanView: View {
                         .frame(width: 50, height: 50)
                         .overlay {
                             Image(systemName: "photo")
-                                .font(Font.system(size: 28))
+                                .font(Font.system(size: 15))
                         }
                     
                     Text("使用相册")
@@ -94,7 +94,7 @@ struct ScanView: View {
                         .overlay {
                             Image(systemName: "lightbulb")
                                 .symbolVariant(isTorchOn ? .fill : .none)
-                                .font(Font.system(size: 28))
+                                .font(Font.system(size: 15))
                         }
                     
                     Text("闪光灯")
@@ -105,7 +105,6 @@ struct ScanView: View {
                     isTorchOn.toggle()
                 }
                 
-                
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity,alignment: .leading)
@@ -114,7 +113,6 @@ struct ScanView: View {
         }
         .edgesIgnoringSafeArea(.all)
         .enableInjection()
-        
     }
 }
 
