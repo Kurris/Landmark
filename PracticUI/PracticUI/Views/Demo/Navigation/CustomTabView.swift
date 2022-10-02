@@ -21,6 +21,13 @@ struct CustomTabView: View {
     @State var selectTab : MyTab = .demo
     @State var activeIndex : Int = 1
     
+    
+    init(){
+        let  appearance =  UINavigationBar.appearance()
+        appearance.backgroundColor = .clear
+        appearance.shadowImage = UIImage() //底部线条
+    }
+    
     var body: some View {
         VStack{
             TabView(selection: $selectTab) {
@@ -55,6 +62,14 @@ struct CustomTabView: View {
         .toolbar{
             ToolbarItem(placement: .navigationBarLeading) {
                 header
+            }
+            
+            
+            ToolbarItem(placement: .principal) {
+                Button("自定义标题"){
+                    
+                }
+                .buttonStyle(.bordered)
             }
         }
         .enableInjection()
