@@ -38,6 +38,9 @@ struct ContentView: View {
             }
         }
         .ignoresSafeArea()
+        .fullScreenCover(isPresented: $model.isShowLoginModal){
+            LoginView()
+        }
         .enableInjection()
     }
 }

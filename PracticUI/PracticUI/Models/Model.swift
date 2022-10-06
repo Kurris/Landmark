@@ -18,4 +18,7 @@ class Model: ObservableObject {
     @Published var isShowCustomTabbar = true
     @Published var isAbleShowSidebar = true
     @Published var isShowSplashPage = true
+    
+    
+    @Published var isShowLoginModal = false
 }
