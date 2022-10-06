@@ -19,8 +19,25 @@ struct DragGestureView: View {
                     .onEnded{ _ in
                         dragOffect = .zero
                     }
-                    .onChanged{ gesture in
-                        dragOffect = gesture.translation
+                    .onChanged{ value in
+                        dragOffect = value.translation
+                        
+                        
+                        if value.translation.width < 0 && value.translation.height > -30 && value.translation.height < 30 {
+                            print("left swipe")
+                        }
+                        else if value.translation.width > 0 && value.translation.height > -30 && value.translation.height < 30 {
+                            print("right swipe")
+                        }
+                        else if value.translation.height < 0 && value.translation.width < 100 && value.translation.width > -100 {
+                            print("up swipe")
+                        }
+                        else if value.translation.height > 0 && value.translation.width < 100 && value.translation.width > -100 {
+                            print("down swipe")
+                        }
+                        else {
+                            print("no clue")
+                        }
                     }
             )
     }

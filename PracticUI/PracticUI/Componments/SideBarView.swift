@@ -99,7 +99,7 @@ struct SideBarView<SidebarContent: View, Content: View>: View {
     }
     
     var openDrag :  some Gesture {
-        DragGesture(minimumDistance: 10, coordinateSpace: .local)
+        DragGesture(minimumDistance: 30, coordinateSpace: .local)
             .updating($isOpenDrag) { gesture, state, transaction in
                 if gesture.startLocation.x < 10 {
                     state  = true

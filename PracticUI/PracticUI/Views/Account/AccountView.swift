@@ -188,6 +188,9 @@ struct AccountView: View {
                             .foregroundColor(.secondary)
                     }
                 }
+                .onTapGesture{
+                    
+                }
                 .swipeActions(allowsFullSwipe: false) {
                     Button(action: {
                         isDeleted = true
@@ -207,6 +210,9 @@ struct AccountView: View {
                     Image(systemName: "link")
                         .foregroundColor(.secondary)
                 }
+            }
+            .onTapGesture{
+                
             }
             .swipeActions(allowsFullSwipe: false) {
                 pinButton

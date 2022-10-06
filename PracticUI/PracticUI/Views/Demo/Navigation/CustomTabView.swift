@@ -20,7 +20,13 @@ struct CustomTabView: View {
     
     @State var selectTab : MyTab = .demo
     @State var activeIndex : Int = 1
+    @GestureState var isDragging = false
     
+    @State var currentPageOffset  = CGFloat.zero
+    @State var minimumDistance  = 10.0
+    
+    @State var data : [Int] = [0,1,2]
+    @State var headerData : [Int] = [Int](1...30)
     
     init(){
         let  appearance =  UINavigationBar.appearance()
@@ -28,29 +34,97 @@ struct CustomTabView: View {
         appearance.shadowImage = UIImage() //底部线条
     }
     
+    
+    var cardDrag : some Gesture{
+        DragGesture(minimumDistance: minimumDistance)
+            .updating($isDragging){ gesture, state, transition in
+                state = true
+            }
+            .onChanged { value in
+                guard !(activeIndex == headerData.first! && value.translation.width > 0 ) else {return}
+                guard !(activeIndex == headerData.last! && value.translation.width < 0 ) else {return}
+                    
+                currentPageOffset =  value.translation.width
+            }
+    }
+    
     var body: some View {
         VStack{
+            
             TabView(selection: $selectTab) {
                 VStack{
                     
-                    header2
-
-                    TabView(selection: $activeIndex) {
-                        ForEach(1 ..< 30 , id:\.self){ item in
-                            Text("row #\(item)")
-                                .frame(maxWidth:.infinity,maxHeight: .infinity)
-                                .background(.ultraThinMaterial)
-                                .tag(item)
-                        }
-                    }        
-                    Spacer()
                 }
                 .frame(maxWidth:.infinity,maxHeight: .infinity)
                 .background(.yellow)
                 .padding(20)
                 .tag(MyTab.demo)
                 
-                VStack{}
+                VStack{
+                    header2
+                    
+                    ScrollView(.horizontal,showsIndicators: false){
+                        HStack{
+                            ZStack{
+                                ForEach(Array(data).filter({ v in
+                                    return v != 0
+                                }),id:\.self){  item in
+                                    
+                                    ScrollView{
+                                        Text("row #\(item)")
+                                            .frame(maxWidth:.infinity,maxHeight: .infinity)
+                                            .frame(width : UIScreen.main.bounds.width - 40)
+                                        
+                                        Rectangle().fill(.yellow)
+                                            .frame(width: 300, height: 400)
+                                        Rectangle().fill(.yellow)
+                                            .frame(width: 300, height: 400)
+                                        Rectangle().fill(.yellow)
+                                            .frame(width: 300, height: 400)
+                                    }
+                                    .offset(x: calcOffset(item))
+                                    .tag(item)
+                                    
+                                }
+                            }
+                            .offset(x: currentPageOffset)
+                            .gesture(cardDrag)
+                        }
+                    }
+                    .overlay{
+                        if activeIndex == headerData.first! {
+                            HStack{
+                                Color.white.frame(maxWidth: .infinity, maxHeight: .infinity)
+                                    .frame(width: UIScreen.main.bounds.width / 2)
+                                    .opacity(0.001)
+                                    .contentShape(Rectangle())
+                                Spacer()
+                            }
+                        }
+                    }
+                    .onChange(of: isDragging) { _ in
+                        if !isDragging {
+                            
+                            //to right
+                            if currentPageOffset < 0 {
+                                if abs(currentPageOffset) > UIScreen.main.bounds.width / 2 * 0.7{
+                                    goPage(activeIndex + 1)
+                                }
+                                resetDrag()
+                            }
+                            
+                            //to left
+                            if currentPageOffset > 0{
+                                if abs(currentPageOffset) > UIScreen.main.bounds.width / 2 * 0.7{
+                                    if activeIndex != 1 {
+                                        goPage(activeIndex - 1)
+                                    }
+                                }
+                                resetDrag()
+                            }
+                        }
+                    }
+                }
                 .frame(maxWidth:.infinity,maxHeight: .infinity)
                 .background(.blue)
                 .padding(20)
@@ -64,7 +138,6 @@ struct CustomTabView: View {
                 header
             }
             
-            
             ToolbarItem(placement: .principal) {
                 Button("自定义标题"){
                     
@@ -75,33 +148,81 @@ struct CustomTabView: View {
         .enableInjection()
     }
     
-    
     var header2 : some View{
         ScrollView(.horizontal,showsIndicators: false){
-            HStack{
-                ForEach(1 ..< 30 ,id:\.self){ item in
-                    Button {
-                        withAnimation {
-                            activeIndex = item
+            ScrollViewReader{ proxy in
+                HStack{
+                    ForEach(headerData ,id:\.self){ item in
+                        Button {
+                            goPage(item)
+                        } label: {
+                            Text("\(item)")
+                                .frame(width: 55, height: 55)
+                                .background(.ultraThinMaterial)
+                                .foregroundColor(activeIndex == item ? .black:.secondary)
                         }
-                    } label: {
-                        Text("\(item)")
-                            .frame(width: 55, height: 55)
-                            .background(.ultraThinMaterial)
-                            .foregroundColor(activeIndex == item ? .black:.secondary)
+                        .anchorPreference(key: CustomTabPreferenceKey2.self, value: .bounds,
+                                          transform: { [CustomTabPreferenceKeyPreferenceData2(viewIdx: item, bounds: $0)] })
                     }
-                    .anchorPreference(key: CustomTabPreferenceKey2.self, value: .bounds,
-                                      transform: { [CustomTabPreferenceKeyPreferenceData2(viewIdx: item, bounds: $0)] })
-    
                 }
-            }
-            .overlayPreferenceValue(CustomTabPreferenceKey2.self) { preferences in
-                GeometryReader { geometry in
-                    createBorder2(geometry, preferences)
+                .overlayPreferenceValue(CustomTabPreferenceKey2.self) { preferences in
+                    GeometryReader { geometry in
+                        createBorder2(geometry, preferences)
+                    }
+                }
+                .onChange(of: activeIndex) { _ in
+                    withAnimation {
+                        proxy.scrollTo(activeIndex, anchor: .center)
+                    }
                 }
             }
         }
     }
+    
+    func goPage(_ pageIndex:Int){
+        
+        //to right
+        if pageIndex - activeIndex > 1{
+            data.remove(at: 2)
+            data.append(pageIndex)
+        }
+        //to left
+        else if pageIndex - activeIndex < -1{
+            data.remove(at: 0)
+            data.insert(pageIndex, at: 0)
+        }
+        else{
+            withAnimation {
+                
+                data[0] = pageIndex - 1
+                data[1] = pageIndex
+                data[2] = pageIndex + 1
+                
+                resetDrag()
+            }
+        }
+    
+        withAnimation {
+            activeIndex = pageIndex
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
+            data[1] = activeIndex
+            data[0] = activeIndex - 1
+            data[2] = activeIndex + 1
+        }
+    }
+    
+    func calcOffset(_ currentRow:Int) -> CGFloat{
+      return  (currentRow - activeIndex) < 0 ? -358 : (currentRow - activeIndex) > 0 ? 358 : 0
+    }
+    
+    func resetDrag(){
+        withAnimation {
+            currentPageOffset = 0.0
+        }
+    }
+    
     
     
     var header : some View{
@@ -137,7 +258,7 @@ struct CustomTabView: View {
     }
     
     func createBorder(_ geometry: GeometryProxy, _ preferences: [CustomTabPreferenceKeyPreferenceData]) -> some View {
-
+        
         let p = preferences.first(where: { $0.viewIdx == selectTab })
         let bound =  geometry[p!.bounds];
         
@@ -147,21 +268,28 @@ struct CustomTabView: View {
             .frame(width: bound.width - 5, height: 3,alignment: .trailing)
             .cornerRadius(5)
             .offset(x:x, y:bound.height)
-       }
+    }
     
     
     func createBorder2(_ geometry: GeometryProxy, _ preferences: [CustomTabPreferenceKeyPreferenceData2]) -> some View {
-
+        
         let p = preferences.first(where: { $0.viewIdx == activeIndex })
+        if p == nil{
+            return AnyView( Group{
+                EmptyView()
+            })
+        }
         let bound =  geometry[p!.bounds];
         
         let x = bound.minX;
         
-        return Rectangle().fill(.blue)
-            .frame(width: bound.width - 5, height: 3,alignment: .trailing)
-            .cornerRadius(5)
-            .offset(x:x, y:bound.height-2)
-       }
+        return AnyView(Group{
+            Rectangle().fill(.yellow)
+                .frame(width: bound.width, height: 5,alignment: .trailing)
+                .cornerRadius(5)
+                .offset(x:x, y: bound.height-5)
+        })
+    }
 }
 
 struct CustomTabPreferenceKeyPreferenceData {
