@@ -18,6 +18,8 @@ struct CustomTabView: View {
     
     @ObserveInjection var inject
     
+    @Environment(\.presentationMode) var presentationMode
+    
     @State var selectTab : MyTab = .demo
     @State var activeIndex : Int = 1
     @GestureState var isDragging = false
@@ -95,7 +97,7 @@ struct CustomTabView: View {
                         if activeIndex == headerData.first! {
                             HStack{
                                 Color.white.frame(maxWidth: .infinity, maxHeight: .infinity)
-                                    .frame(width: UIScreen.main.bounds.width / 2)
+                                    .frame(width: UIScreen.main.bounds.width / 2 * 0.7)
                                     .opacity(0.001)
                                     .contentShape(Rectangle())
                                 Spacer()
@@ -139,10 +141,18 @@ struct CustomTabView: View {
             }
             
             ToolbarItem(placement: .principal) {
-                Button("自定义标题"){
+                Button(action: {
                     
-                }
+                }, label: {
+                    Text("自定义标题")
+                })
                 .buttonStyle(.bordered)
+            }
+            
+            ToolbarItem(placement: .navigationBarTrailing){
+                Button("退出"){
+                    presentationMode.wrappedValue.dismiss()
+                }
             }
         }
         .enableInjection()
