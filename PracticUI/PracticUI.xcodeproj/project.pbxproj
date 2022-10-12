@@ -41,7 +41,9 @@
 		1E5F687128E54DFD00254BDB /* ShakeFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5F687028E54DFD00254BDB /* ShakeFeedbackView.swift */; };
 		1E641E7828E8BFFA000A093F /* TouchShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E641E7728E8BFFA000A093F /* TouchShapeView.swift */; };
 		1E641E7A28E8CA77000A093F /* BaseSheetExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E641E7928E8CA77000A093F /* BaseSheetExtensions.swift */; };
-		1E641E7C28E8D6C0000A093F /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E641E7B28E8D6C0000A093F /* CustomTabView.swift */; };
+		1E641E7C28E8D6C0000A093F /* PaginationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E641E7B28E8D6C0000A093F /* PaginationView.swift */; };
+		1E70A15B28F2C42D00D709C1 /* NestedPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E70A15A28F2C42D00D709C1 /* NestedPageView.swift */; };
+		1E70A15D28F54FD900D709C1 /* PageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E70A15C28F54FD900D709C1 /* PageModel.swift */; };
 		1E7FB18828B48DEE00FA6352 /* AnimatableFontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7FB18728B48DEE00FA6352 /* AnimatableFontModifier.swift */; };
 		1E7FB18B28B49F7B00FA6352 /* TabPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7FB18A28B49F7B00FA6352 /* TabPageView.swift */; };
 		1E7FB18D28B49F8E00FA6352 /* FeaturedItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7FB18C28B49F8E00FA6352 /* FeaturedItemView.swift */; };
@@ -139,7 +141,9 @@
 		1E5F687028E54DFD00254BDB /* ShakeFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeFeedbackView.swift; sourceTree = "<group>"; };
 		1E641E7728E8BFFA000A093F /* TouchShapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchShapeView.swift; sourceTree = "<group>"; };
 		1E641E7928E8CA77000A093F /* BaseSheetExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSheetExtensions.swift; sourceTree = "<group>"; };
-		1E641E7B28E8D6C0000A093F /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
+		1E641E7B28E8D6C0000A093F /* PaginationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationView.swift; sourceTree = "<group>"; };
+		1E70A15A28F2C42D00D709C1 /* NestedPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedPageView.swift; sourceTree = "<group>"; };
+		1E70A15C28F54FD900D709C1 /* PageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageModel.swift; sourceTree = "<group>"; };
 		1E7FB18728B48DEE00FA6352 /* AnimatableFontModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableFontModifier.swift; sourceTree = "<group>"; };
 		1E7FB18A28B49F7B00FA6352 /* TabPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabPageView.swift; sourceTree = "<group>"; };
 		1E7FB18C28B49F8E00FA6352 /* FeaturedItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedItemView.swift; sourceTree = "<group>"; };
@@ -367,7 +371,7 @@
 				1E895A7928D4C8280087FCFB /* UINavigationController.swift */,
 				1E895A7E28D98A900087FCFB /* DefaultTab.swift */,
 				1E895A8128D98E260087FCFB /* NavigationSimpleView.swift */,
-				1E641E7B28E8D6C0000A093F /* CustomTabView.swift */,
+				1E70A15A28F2C42D00D709C1 /* NestedPageView.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -462,6 +466,8 @@
 		1EA55FFA28B34D25004645A5 /* Componments */ = {
 			isa = PBXGroup;
 			children = (
+				1E70A15C28F54FD900D709C1 /* PageModel.swift */,
+				1E641E7B28E8D6C0000A093F /* PaginationView.swift */,
 				1E0DAF5628D04DDF004782EA /* SearchView.swift */,
 				1E641E7428E6AF33000A093F /* Sheets */,
 				1EE2378A28E2C83E00A85DFA /* SideBarView.swift */,
@@ -682,12 +688,14 @@
 				1EE2378928E1A71200A85DFA /* ChainsGestureView.swift in Sources */,
 				1EE237A728E42F3200A85DFA /* JumpProgramView.swift in Sources */,
 				1EA4647E28B23C6200707ADB /* GrayBackground.swift in Sources */,
+				1E70A15B28F2C42D00D709C1 /* NestedPageView.swift in Sources */,
 				1E895A6C28D4711D0087FCFB /* StickyView.swift in Sources */,
 				1EE2378528E1847300A85DFA /* HighPriorityGestureView.swift in Sources */,
 				1E7FB18D28B49F8E00FA6352 /* FeaturedItemView.swift in Sources */,
 				1E541EAA28DADC8F00320FC7 /* SwipeListView.swift in Sources */,
 				1EE237A928E430A200A85DFA /* AnchorPreferenceView.swift in Sources */,
 				1E541EB528DAF9E900320FC7 /* DefaultBadgeView.swift in Sources */,
+				1E70A15D28F54FD900D709C1 /* PageModel.swift in Sources */,
 				1EA55FFE28B350FF004645A5 /* NavigationBar.swift in Sources */,
 				1EE2379F28E42B6300A85DFA /* ShakeView.swift in Sources */,
 				1E895A8528D99D390087FCFB /* PickerView.swift in Sources */,
@@ -740,7 +748,7 @@
 				1EE2379D28E42B4800A85DFA /* ShakeExtensions.swift in Sources */,
 				1E333A3328DB111D00E59AA6 /* TextFieldWithIconStyleView.swift in Sources */,
 				1E895A8928D9A64C0087FCFB /* DatePickerView.swift in Sources */,
-				1E641E7C28E8D6C0000A093F /* CustomTabView.swift in Sources */,
+				1E641E7C28E8D6C0000A093F /* PaginationView.swift in Sources */,
 				1E895A7D28D4CA960087FCFB /* TimerView.swift in Sources */,
 				1E39437928B5FB9D00D20030 /* DynamicPicView.swift in Sources */,
 				1E895A8728D9A4E80087FCFB /* ToggleView.swift in Sources */,

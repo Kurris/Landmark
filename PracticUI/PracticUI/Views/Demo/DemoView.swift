@@ -70,9 +70,9 @@ struct DemoView: View {
                     }
                     
                     JumpView {
-                        CustomTabView()
+                        NestedPageView()
                     } label: {
-                        Text("自定义tab2")
+                        Text("嵌套分页")
                     }
                     
                     JumpView{
