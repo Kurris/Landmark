@@ -61,71 +61,79 @@ struct PaginationView<LoopPage: View>: View {
                 var toLeft = false
                 if value.translation.width > 0 && value.translation.height > -30 && value.translation.height < 30 {
                     toLeft = true
-//                    print("to left")
                 }
                 
                 var toRight = false
                 if value.translation.width < 0 && value.translation.height > -30 && value.translation.height < 30 {
                     toRight  = true
-//                    print("to right")
                 }
                 
-                if (pageModel.activeIndex != 0 || toRight )
-                    && (pageModel.activeIndex != pageModel.total - 1 || toLeft ){
-                    print(pageModel.name + " " + UUID().uuidString)
+                let flag = (pageModel.activeIndex != 0 || toRight )
+                && (pageModel.activeIndex != pageModel.total - 1 || toLeft)
+ 
+                if flag {
                     pageModel.draggingOffset =  value.translation.width
                 }
                 
-               
                 onSwipeChanging?(value.translation.width)
             }
     }
     
     var body: some View {
-        let stack = HStack{
-            ZStack{
-                ForEach(Array(pageModel.indexes.reversed()),id:\.self){  item in
-                    loopPage(item)
-                        .offset(x: calcOffset(item))
-                        .tag(item)
-                }
-                .offset(x: pageModel.draggingOffset)
-            }
-            
-        }
-        let content :AnyView = AnyView(stack.clipShape(Rectangle()))
-         content
-        .gesture(draggesture)
-        .onChange(of: isDragging) { _ in
-            if !isDragging {
-                
-                //to right
-                if pageModel.draggingOffset < 0 {
-                    if abs(pageModel.draggingOffset) > UIScreen.main.bounds.width / 2 * 0.7{
-                        pageModel.goPage(pageModel.activeIndex + 1)
-                    }
-                    pageModel.resetDrag()
-                }
-                
-                //to left
-                if pageModel.draggingOffset > 0{
-                    if abs(pageModel.draggingOffset) > UIScreen.main.bounds.width / 2 * 0.7{
-                        pageModel.goPage(pageModel.activeIndex - 1)
-                    }
-                    pageModel.resetDrag()
-                }
-            }
-            onDragChanged?(isDragging)
-           
+        
+        GeometryReader{ proxy in
+            getMainContent(for: proxy.size)
         }
         .clipped()
+        
         .enableInjection()
     }
     
-  
-    
-  
-    
+    func getMainContent(for size : CGSize) -> AnyView{
+        let stack = VStack{
+            ZStack{
+                ForEach(Array(pageModel.indexes.reversed()),id:\.self){  item in
+                    if item < 0 || item >= pageModel.total{
+                       EmptyView()
+                    }
+                    else{
+                        loopPage(item)
+                            .offset(x: calcOffset(item))
+                            .tag(item)
+                    }
+                }
+                .offset(x: pageModel.draggingOffset)
+            }
+        }
+       let content :AnyView = AnyView(stack.contentShape(Rectangle()))
+        
+       return AnyView(
+        content
+         .gesture(draggesture)
+         .onChange(of: isDragging) { _ in
+             if !isDragging {
+                 
+                 //to right
+                 if pageModel.draggingOffset < 0 {
+                     if abs(pageModel.draggingOffset) > UIScreen.main.bounds.width / 2 * 0.7{
+                         pageModel.goPage(pageModel.activeIndex + 1)
+                     }
+                     pageModel.resetDrag()
+                 }
+                 
+                 //to left
+                 if pageModel.draggingOffset > 0{
+                     if abs(pageModel.draggingOffset) > UIScreen.main.bounds.width / 2 * 0.7{
+                         pageModel.goPage(pageModel.activeIndex - 1)
+                     }
+                     pageModel.resetDrag()
+                 }
+             }
+             onDragChanged?(isDragging)
+         }
+       )
+    }
+
     func calcOffset(_ currentRow:Int) -> CGFloat{
         return  (currentRow - pageModel.activeIndex) < 0 ? -UIScreen.main.bounds.width : (currentRow - pageModel.activeIndex) > 0 ? UIScreen.main.bounds.width : 0
     }

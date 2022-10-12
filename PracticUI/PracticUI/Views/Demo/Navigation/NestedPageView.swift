@@ -17,17 +17,17 @@ struct NestedPageView: View {
     
     @State var isHidden = false
     
-    @StateObject var pPage : PageModel = PageModel(name: "parent",indexes: [0,1])
-    @StateObject var page2 : PageModel = PageModel(name: "child2",indexes:[0,1,2])
-    @StateObject var page1 : PageModel = PageModel(name: "child1",indexes:[0,1])
+    @StateObject var pPage : PageModel = PageModel(name: "parent")
+    @StateObject var page2 : PageModel = PageModel(name: "child2")
+    @StateObject var page1 : PageModel = PageModel(name: "child1")
     
     var body: some View {
         VStack{
             PaginationView(pageModel: pPage) { index in
                 if index == 0 {
                     VStack{
-                        Text("只有俩页")
-                     mainPage
+                        Text("只有俩子页")
+                        mainPage
                     }
                     .onAppear {
                         page1.total = 2
@@ -42,6 +42,9 @@ struct NestedPageView: View {
                        page2.total = headerData.count
                    }
                 }
+            }
+            .onAppear {
+                pPage.total = 2
             }
         }
         .ignoresSafeArea(.all , edges: [.bottom])
@@ -64,30 +67,31 @@ struct NestedPageView: View {
     }
     
     var mainPage : some View{
+       
         PaginationView(pageModel: page1,onSwipeChanging: { width in
-                    if width < 0 && page1.activeIndex == page1.indexes.count - 1{
-                            withAnimation {
-                                pPage.draggingOffset = width
-                            }
-                        }
+            if width < 0 && page1.activeIndex == page1.total - 1{
+                withAnimation {
+                    pPage.draggingOffset = width
+                }
+            }
         },onDragChanged: { isDragging in
-                        if !isDragging && page1.activeIndex == page1.indexes.count - 1 {
-                            //to right
-                            if pPage.draggingOffset < 0 {
-                                if abs(pPage.draggingOffset) > UIScreen.main.bounds.width / 2 * 0.7{
-                                    pPage.goPage(pPage.activeIndex + 1)
-                                }
-                                pPage.resetDrag()
-                            }
-
-                            //to left
-                            if pPage.draggingOffset > 0{
-                                if abs(pPage.draggingOffset) > UIScreen.main.bounds.width / 2 * 0.7{
-                                    pPage.goPage(pPage.activeIndex - 1)
-                                }
-                                pPage.resetDrag()
-                            }
-                        }
+            if !isDragging && page1.activeIndex == page1.total - 1 {
+                //to right
+                if pPage.draggingOffset < 0 {
+                    if abs(pPage.draggingOffset) > UIScreen.main.bounds.width / 2 * 0.7{
+                        pPage.goPage(pPage.activeIndex + 1)
+                    }
+                    pPage.resetDrag()
+                }
+                
+                //to left
+                if pPage.draggingOffset > 0{
+                    if abs(pPage.draggingOffset) > UIScreen.main.bounds.width / 2 * 0.7{
+                        pPage.goPage(pPage.activeIndex - 1)
+                    }
+                    pPage.resetDrag()
+                }
+            }
         }){ index in
             ScrollView{
                 Text("row #\(index + 1)")
@@ -107,6 +111,7 @@ struct NestedPageView: View {
     
     var pagination2 : some View{
         PaginationView(pageModel: page2,onSwipeChanging: { width in
+        
             if width > 0 && page2.activeIndex == 0{
                 withAnimation {
                     pPage.draggingOffset = width
