@@ -75,6 +75,12 @@ struct DemoView: View {
                         Text("嵌套分页")
                     }
                     
+                    JumpView {
+                        NativePageView()
+                    } label: {
+                        Text("原生分页")
+                    }
+                    
                     JumpView{
                         NavigationBar(title: "标题", hasScrolled: .constant(false))
                     } label:{

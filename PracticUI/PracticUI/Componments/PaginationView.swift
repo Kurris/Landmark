@@ -15,13 +15,6 @@ struct PaginationView<LoopPage: View>: View {
 
     @ObserveInjection var inject
     
-    enum DragDirection : Int{
-        case toTop = 1
-        case toRight = 2
-        case toBottom = 3
-        case toLeft = 4
-    }
-    
     @GestureState var isDragging = false
     
     let minimumDistance : CGFloat
@@ -58,6 +51,7 @@ struct PaginationView<LoopPage: View>: View {
                 state = true
             }
             .onChanged { value in
+                print(pageModel.name)
                 var toLeft = false
                 if value.translation.width > 0 && value.translation.height > -30 && value.translation.height < 30 {
                     toLeft = true
@@ -68,14 +62,21 @@ struct PaginationView<LoopPage: View>: View {
                     toRight  = true
                 }
                 
-                let flag = (pageModel.activeIndex != 0 || toRight )
-                && (pageModel.activeIndex != pageModel.total - 1 || toLeft)
- 
-                if flag {
-                    pageModel.draggingOffset =  value.translation.width
-                }
                 
-                onSwipeChanging?(value.translation.width)
+                if pageModel.isNativePage{
+                    if value.translation.width > 0 && pageModel.draggingOffset < UIScreen.main.bounds.width{
+                        pageModel.draggingOffset = value.translation.width
+                        onSwipeChanging?(value.translation.width)
+                    }
+                }else {
+                    let flag = (pageModel.activeIndex != 0 || toRight )
+                    && (pageModel.activeIndex != pageModel.total - 1 || toLeft)
+     
+                    if flag {
+                        pageModel.draggingOffset =  value.translation.width
+                    }
+                    onSwipeChanging?(value.translation.width)
+                }
             }
     }
     
@@ -105,6 +106,8 @@ struct PaginationView<LoopPage: View>: View {
                 .offset(x: pageModel.draggingOffset)
             }
         }
+//            .frame(width: size.width, height: size.height)
+        
        let content :AnyView = AnyView(stack.contentShape(Rectangle()))
         
        return AnyView(
@@ -112,21 +115,27 @@ struct PaginationView<LoopPage: View>: View {
          .gesture(draggesture)
          .onChange(of: isDragging) { _ in
              if !isDragging {
-                 
-                 //to right
-                 if pageModel.draggingOffset < 0 {
-                     if abs(pageModel.draggingOffset) > UIScreen.main.bounds.width / 2 * 0.7{
-                         pageModel.goPage(pageModel.activeIndex + 1)
-                     }
-                     pageModel.resetDrag()
+
+                 if pageModel.isNativePage{
+                     pageModel.draggingOffset =  pageModel.draggingOffset >= UIScreen.main.bounds.width/2*0.7 ? UIScreen.main.bounds.width : 0
+                     onSwipeChanging?(pageModel.draggingOffset)
                  }
-                 
-                 //to left
-                 if pageModel.draggingOffset > 0{
-                     if abs(pageModel.draggingOffset) > UIScreen.main.bounds.width / 2 * 0.7{
-                         pageModel.goPage(pageModel.activeIndex - 1)
+                 else{
+                     //to right
+                     if pageModel.draggingOffset < 0 {
+                         if abs(pageModel.draggingOffset) > UIScreen.main.bounds.width / 2 * 0.7{
+                             pageModel.goPage(pageModel.activeIndex + 1)
+                         }
+                         pageModel.resetDrag()
                      }
-                     pageModel.resetDrag()
+
+                     //to left
+                     if pageModel.draggingOffset > 0{
+                         if abs(pageModel.draggingOffset) > UIScreen.main.bounds.width / 2 * 0.7{
+                             pageModel.goPage(pageModel.activeIndex - 1)
+                         }
+                         pageModel.resetDrag()
+                     }
                  }
              }
              onDragChanged?(isDragging)

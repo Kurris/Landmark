@@ -26,13 +26,22 @@ public class PageModel: ObservableObject {
     
     @Published var total = 0
     
+    var _isNativePage : Bool = false
+    public var isNativePage : Bool {
+        get{_isNativePage}
+        set{
+            _isNativePage = newValue
+            draggingOffset = _isNativePage ? UIScreen.main.bounds.width : 0
+        }
+    }
+    
    #if !os(tvOS)
     
     /// `swipeGesture` 当前拖动的值
-   @Published var draggingOffset: CGFloat = 0.0
+    @Published var draggingOffset: CGFloat = 0.0
 
     /// `swipeGesture` 上一次拖动的值
-    var lastDraggingValue: DragGesture.Value?
+    @Published var lastDraggingValue: CGFloat = 0.0
     
     /// `swipeGesture` 滑动速度
     var draggingVelocity: Double = 0
@@ -48,8 +57,9 @@ public class PageModel: ObservableObject {
     var lastDigitalCrownPageOffset: CGFloat = 0
     
     var name : String
-    init(name: String){
+    init(name: String , isNativePage : Bool = false){
         self.name = name
+        self.isNativePage = isNativePage
     }
     
     public func goPage(_ pageIndex:Int){

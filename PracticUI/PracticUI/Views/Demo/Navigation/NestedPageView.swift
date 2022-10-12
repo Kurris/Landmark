@@ -15,8 +15,6 @@ struct NestedPageView: View {
     
     @State var headerData : [Int] = [Int](0...30)
     
-    @State var isHidden = false
-    
     @StateObject var pPage : PageModel = PageModel(name: "parent")
     @StateObject var page2 : PageModel = PageModel(name: "child2")
     @StateObject var page1 : PageModel = PageModel(name: "child1")
