@@ -16,6 +16,9 @@ struct NativePageView: View {
     @StateObject var page1 : PageModel = PageModel(name: "page1",isNativePage: true)
     @StateObject var page2 : PageModel = PageModel(name: "page2",isNativePage: true)
      
+    
+    @State var isShowHighSheet = false
+    
     @State var currentIndex:Int = 0
     
     var body: some View {
@@ -32,7 +35,6 @@ struct NativePageView: View {
                     }
                     .buttonStyle(.bordered)
                 }
-                
             }
             
             PaginationView(pageModel: page1,minimumDistance: 10.0,onSwipeChanging: { width in
@@ -44,15 +46,28 @@ struct NativePageView: View {
                 }
             }) { index in
                 Color.pink.overlay{
-                    Button("current1"){
-                        withAnimation {
-                            page1.draggingOffset = -(UIScreen.main.bounds.width/4)
-                            page2.draggingOffset = 0
-                            currentIndex = 2
+                    VStack{
+                        Button("current1"){
+                            withAnimation {
+                                page1.draggingOffset = -(UIScreen.main.bounds.width/4)
+                                page2.draggingOffset = 0
+                                currentIndex = 2
+                            }
                         }
+                        .buttonStyle(.bordered)
+                        
+                        Button("show high sheet "){
+                            isShowHighSheet = true
+                        }
+                        .buttonStyle(.bordered)
                     }
-                    .buttonStyle(.bordered)
                 }
+                .highSheet(isShow: $isShowHighSheet) {
+                    
+                } title: {
+                    TouchShapeView()
+                }
+
             }
             .allowsHitTesting(currentIndex == 1)
             

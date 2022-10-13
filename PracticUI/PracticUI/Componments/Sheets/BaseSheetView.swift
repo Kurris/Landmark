@@ -123,26 +123,8 @@ struct BaseSheetView<Content: View,Title: View> : View {
         .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.13), radius: 10.0)
         .offset(y: offsetY)
         .gesture(draggable ? drag : nil)
-    }
-    
-    var drag : some Gesture{
-        DragGesture(coordinateSpace: .local)
-            .updating($isDragging, body: { _, state, _ in
-                state = true
-            })
-            .onChanged({ gesture in
-                withAnimation(.slide){
-                    
-                    guard gesture.location.y > 0 else { return }
-                    
-                    if gesture.startLocation.y > 40 && gesture.translation.width > 0  {
-                        offsetY = gesture.translation.width
-                    }else if gesture.startLocation.y <= 40 && gesture.startLocation.y > 0  {
-                        offsetY = gesture.translation.height
-                    }
-                }
-            })
-            .onEnded({gesture in
+        .onChange(of: isDragging) { _ in
+            if !isDragging{
                 guard offsetY > 0.0 else { return }
                 
                 let limit = heigh / 2 * 0.7
@@ -154,7 +136,30 @@ struct BaseSheetView<Content: View,Title: View> : View {
                         toShow()
                     }
                 }
+            }
+        }
+    }
+    
+    var drag : some Gesture{
+        DragGesture(coordinateSpace: .local)
+            .updating($isDragging, body: { _, state, _ in
+                state = true
             })
+            .onChanged{ gesture in
+                
+                guard gesture.location.y > 0 && gesture.translation.height > 0 else { return }
+                
+                withAnimation(.slide){
+                    //水平滑动
+                    if gesture.startLocation.y > 40 && gesture.translation.width > 0  {
+                        offsetY = gesture.translation.width
+                    }
+                    //锤子滑动
+                    else if gesture.startLocation.y <= 40 && gesture.startLocation.y > 0  {
+                        offsetY = gesture.translation.height
+                    }
+                }
+            }
     }
 }
 
