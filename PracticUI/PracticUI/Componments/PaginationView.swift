@@ -64,7 +64,7 @@ struct PaginationView<LoopPage: View>: View {
                 
                 
                 if pageModel.isNativePage{
-                    if value.translation.width > 0 && pageModel.draggingOffset < UIScreen.main.bounds.width{
+                    if value.translation.width > 0 {
                         pageModel.draggingOffset = value.translation.width
                         onSwipeChanging?(value.translation.width)
                     }
@@ -117,7 +117,9 @@ struct PaginationView<LoopPage: View>: View {
              if !isDragging {
 
                  if pageModel.isNativePage{
-                     pageModel.draggingOffset =  pageModel.draggingOffset >= UIScreen.main.bounds.width/2*0.7 ? UIScreen.main.bounds.width : 0
+                     withAnimation(.slide) {
+                         pageModel.draggingOffset =  pageModel.draggingOffset >= UIScreen.main.bounds.width/2*0.7 ? UIScreen.main.bounds.width : 0
+                     }
                      onSwipeChanging?(pageModel.draggingOffset)
                  }
                  else{

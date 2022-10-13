@@ -32,6 +32,7 @@ public class PageModel: ObservableObject {
         set{
             _isNativePage = newValue
             draggingOffset = _isNativePage ? UIScreen.main.bounds.width : 0
+            total = 1
         }
     }
     

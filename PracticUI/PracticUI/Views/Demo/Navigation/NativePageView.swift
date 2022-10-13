@@ -15,28 +15,14 @@ struct NativePageView: View {
     @StateObject var page : PageModel = PageModel(name: "mainPage")
     @StateObject var page1 : PageModel = PageModel(name: "page1",isNativePage: true)
     @StateObject var page2 : PageModel = PageModel(name: "page2",isNativePage: true)
-    
-    @State var pages : [PageModel] = [PageModel(name: "mainPage"),PageModel(name: "page1",isNativePage: true)]
-    
-    @State var minimumDistance = 30.0
-    
-    
+     
     @State var currentIndex:Int = 0
-    func currentPage() -> PageModel {
-        if currentIndex == 1 {
-            return page1
-        }else if currentIndex == 2 {
-            return page2
-        }else{
-            return page
-        }
-    }
     
     var body: some View {
         ZStack{
             PaginationView(pageModel: page , minimumDistance: 30.0) { index in
                 
-                List{
+                Color.orange.overlay{
                     Button("current0"){
                         withAnimation {
                             page.draggingOffset = -(UIScreen.main.bounds.width/4)
@@ -46,25 +32,18 @@ struct NativePageView: View {
                     }
                     .buttonStyle(.bordered)
                 }
-            }.onAppear{
-                page.total = 1
-                page1.total = 1
-                page2.total = 1
+                
             }
-            .onChange(of: page.draggingOffset) { newValue in
-                if page.draggingOffset < 0 {
-                    minimumDistance = 10.0
-                }else{
-                    minimumDistance = 30.0
-                }
-            }
+            
             PaginationView(pageModel: page1,minimumDistance: 10.0,onSwipeChanging: { width in
-                page.draggingOffset = -(UIScreen.main.bounds.width/4) + width / 4
+                withAnimation(.slide) {
+                    page.draggingOffset = -(UIScreen.main.bounds.width/4) + width / 4
+                }
                 if page.draggingOffset == 0{
                     currentIndex = 0
                 }
             }) { index in
-                List{
+                Color.pink.overlay{
                     Button("current1"){
                         withAnimation {
                             page1.draggingOffset = -(UIScreen.main.bounds.width/4)
@@ -77,25 +56,24 @@ struct NativePageView: View {
             }
             .allowsHitTesting(currentIndex == 1)
             
-            PaginationView(pageModel: page2 , minimumDistance: minimumDistance,onSwipeChanging: { width in
-                page1.draggingOffset = -(UIScreen.main.bounds.width/4) + width / 4
+            PaginationView(pageModel: page2 , minimumDistance: 10.0,onSwipeChanging: { width in
+                withAnimation(.slide) {
+                    page1.draggingOffset = -(UIScreen.main.bounds.width/4) + width / 4
+                }
                 if page1.draggingOffset == 0{
                     currentIndex = 1
-                    page2.draggingOffset = UIScreen.main.bounds.width * 2
                 }
             }) { index in
-                List{
+                Color.yellow.overlay{
                     Button("current2"){
 
                     }
                     .buttonStyle(.bordered)
                 }
             }
-            .onAppear {
-                page2.draggingOffset = UIScreen.main.bounds.width * 2
-            }
             .allowsHitTesting(currentIndex == 2)
         }
+        .ignoresSafeArea()
         .enableInjection()
     }
 }
