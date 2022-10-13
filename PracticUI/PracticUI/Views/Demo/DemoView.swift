@@ -312,6 +312,12 @@ struct DemoView: View {
                         } label: {
                             Text("ContextMenu")
                         }
+                        
+                        JumpView {
+                            MapView()
+                        } label: {
+                            Text("Map")
+                        }
                     }
                     
                     Section("Notifications"){

@@ -59,7 +59,6 @@ struct LoginView: View {
             switch response.result {
             case .success(let tokenInfo):
                 accessToken = tokenInfo.access_token
-                print(accessToken)
                 model.isShowLoginModal = false
             case .failure(let error):
                 print("error:\(error)")

@@ -106,6 +106,7 @@
 		1EE237B428E43DAE00A85DFA /* SplashPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE237B328E43DAE00A85DFA /* SplashPageView.swift */; };
 		1EE237B628E441A600A85DFA /* DifferentPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE237B528E441A600A85DFA /* DifferentPopoverView.swift */; };
 		1EEEDDAE28B3B74B000578EF /* ScrollPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEDDAD28B3B74B000578EF /* ScrollPreferenceKey.swift */; };
+		1EF0E86E28F7DC470076CF1E /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF0E86D28F7DC470076CF1E /* MapView.swift */; };
 		1EF86F6F28B23FEB009BB624 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF86F6E28B23FEB009BB624 /* AccountView.swift */; };
 /* End PBXBuildFile section */
 
@@ -207,6 +208,8 @@
 		1EE237B328E43DAE00A85DFA /* SplashPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPageView.swift; sourceTree = "<group>"; };
 		1EE237B528E441A600A85DFA /* DifferentPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifferentPopoverView.swift; sourceTree = "<group>"; };
 		1EEEDDAD28B3B74B000578EF /* ScrollPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPreferenceKey.swift; sourceTree = "<group>"; };
+		1EF0E86D28F7DC470076CF1E /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		1EF0E86F28F7DF2F0076CF1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1EF86F6E28B23FEB009BB624 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -397,6 +400,7 @@
 				1E895A8C28D9AA130087FCFB /* StepperView.swift */,
 				1E895A8E28D9B0BE0087FCFB /* MenuView.swift */,
 				1E895A9028D9B3B10087FCFB /* ContextMenuView.swift */,
+				1EF0E86D28F7DC470076CF1E /* MapView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -431,6 +435,7 @@
 		1EA4646D28B15C6C00707ADB /* PracticUI */ = {
 			isa = PBXGroup;
 			children = (
+				1EF0E86F28F7DF2F0076CF1E /* Info.plist */,
 				1E41A8AB28BC797400C9603A /* Net */,
 				1EA55FFA28B34D25004645A5 /* Componments */,
 				1E4B791728B325CF00D7A1DE /* Models */,
@@ -665,6 +670,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EF86F6F28B23FEB009BB624 /* AccountView.swift in Sources */,
+				1EF0E86E28F7DC470076CF1E /* MapView.swift in Sources */,
 				1E895A8228D98E260087FCFB /* NavigationSimpleView.swift in Sources */,
 				1E895A7A28D4C8280087FCFB /* UINavigationController.swift in Sources */,
 				1E39437B28B609E900D20030 /* ItemDetailPreferenceKey.swift in Sources */,
@@ -892,7 +898,9 @@
 				DEVELOPMENT_TEAM = 25GZ6QQS2R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_FILE = PracticUI/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "扫码";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -926,7 +934,9 @@
 				DEVELOPMENT_TEAM = 25GZ6QQS2R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_FILE = PracticUI/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "扫码";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
