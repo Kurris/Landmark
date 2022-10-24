@@ -41,6 +41,9 @@ struct ContentView: View {
         .fullScreenCover(isPresented: $model.isShowLoginModal){
             LoginView()
         }
+        .fullScreenCover(isPresented: $model.isShowConfirmLoginModal){
+            ConfirmLoginView()
+        }
         .enableInjection()
     }
 }

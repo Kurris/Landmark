@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 class Model: ObservableObject {
     
@@ -21,4 +22,13 @@ class Model: ObservableObject {
     
     
     @Published var isShowLoginModal = false
+    
+    @Published var loginKey = ""
+    @Published var isShowConfirmLoginModal = false
+    
+    @AppStorage("access_token") var accessToken : String?{
+        willSet{
+            objectWillChange.send()
+        }
+    }
 }

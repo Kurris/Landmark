@@ -21,43 +21,24 @@ struct AccountView: View {
     @State private var coins: [Coin] = []
     
     @EnvironmentObject var model : Model
-    @State private var userInfo : UserInfo?
-    @AppStorage("access_token") var accessToken : String?
+    @State  var userInfo : UserInfo?
     
     var body: some View {
         NavigationView {
             List {
                 profileView
-                if accessToken != nil && !accessToken!.isEmpty{
-                   
-                    
-    //                menus
-                    
+                if model.accessToken != nil && !model.accessToken!.isEmpty{
                     links
-                    
                     byteCoins
-      
-                   
                 }
                 
                 Section{
-//                    HStack{
-//                        Spacer()
-//                        Button {
-//
-//                        } label: {
-//                            Text("切换账号")
-//                        }
-//
-//                        Spacer()
-//                    }
-                    
                     HStack{
                         Spacer()
                         
-                        if accessToken != nil && !accessToken!.isEmpty {
+                        if model.accessToken != nil && !model.accessToken!.isEmpty {
                             Button {
-                                accessToken = nil
+                                model.accessToken = nil
                                 userInfo = nil
                             } label: {
                                 Text("退出登陆").foregroundColor(.red)
@@ -73,37 +54,30 @@ struct AccountView: View {
                         
                         Spacer()
                     }
-                    //.listRowBackground(Color.red)
                 }
             }
             .listStyle(.automatic)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar{
                 ToolbarItem(placement:  .navigationBarTrailing) {
-                    
-                    
                     Image(systemName: "qrcode.viewfinder").foregroundColor(.black)
                         .fullScreenCover(isPresented: $isFullscreenScan) {
                         ScanView()
                     }
                     .onTapGesture {
-                        
                         isFullscreenScan = true
                     }
                 }
             }
             .refreshable {
-                await  getCoinsAsync()
                 await getUserInfoAsync()
             }
             .task {
-                await  getCoinsAsync()
                 await getUserInfoAsync()
             }
             .onChange(of: model.isShowLoginModal) { _ in
-                if !model.isShowLoginModal && accessToken != nil && !accessToken!.isEmpty {
+                if !model.isShowLoginModal && model.accessToken != nil && !model.accessToken!.isEmpty {
                     Task{
-                        await  getCoinsAsync()
                         await getUserInfoAsync()
                     }
                 }
@@ -126,21 +100,24 @@ struct AccountView: View {
     }
     
     func getUserInfoAsync() async{
-        let url = "https://isawesome.cn:5000/connect/userinfo";
-        
-        if accessToken != nil {
+        let url = "http://localhost:5000/connect/userinfo";
+     
+        if model.accessToken != nil {
+           print("token exists")
             let headers: HTTPHeaders = [
-                "Authorization": "Bearer \(accessToken!)",
+                "Authorization": "Bearer \(model.accessToken!)",
             ]
 
             AF.request(url,method: .post,headers: headers).responseDecodable { (response: AFDataResponse<UserInfo>) in
                 switch response.result {
                 case .success(let userinfo):
                     userInfo = userinfo
+                    print(userInfo)
                 case .failure(let error):
-                    print(error)
+                    print("error:\(error)")
                 }
             }
+            await  getCoinsAsync()
         }
     }
     
@@ -260,44 +237,6 @@ struct AccountView: View {
     
     var links: some View {
         Section(header: Text("External Links")) {
-            
-//            if !isDeleted {
-//                Link(destination: URL(string: "https://www.apple.com.cn/")!) {
-//                    HStack {
-//                        Label("Apple", systemImage: "house")
-//                        Spacer()
-//                        Image(systemName: "link")
-//                            .foregroundColor(.secondary)
-//                    }
-//                }
-//                .onTapGesture{
-//
-//                }
-//                .swipeActions(allowsFullSwipe: false) {
-//                    Button(action: {
-//                        isDeleted = true
-//                    }) {
-//                        Label("Delete", systemImage: "trash")
-//                    }
-//                    .tint(.red)
-//                    pinButton
-//                }
-//            }
-//
-//
-//            Link(destination: URL(string: "https://www.youtube.com/")!) {
-//                HStack {
-//                    Label("Youtube", systemImage: "tv")
-//                    Spacer()
-//                    Image(systemName: "link")
-//                        .foregroundColor(.secondary)
-//                }
-//            }
-//            .swipeActions(allowsFullSwipe: false) {
-//                pinButton
-//            }
-            
-            
             if userInfo?.website != nil && !userInfo!.website.isEmpty{
                 Link(destination: URL(string: userInfo!.website)!) {
                     HStack {

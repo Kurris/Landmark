@@ -65,15 +65,17 @@ struct PaginationView<LoopPage: View>: View {
                 
                 if pageModel.isNativePage{
                     if value.translation.width > 0 {
-                        pageModel.draggingOffset = value.translation.width
+                        withAnimation(.slide){
+                            pageModel.draggingOffset = value.translation.width
+                        }
                         onSwipeChanging?(value.translation.width)
                     }
                 }else {
-                    let flag = (pageModel.activeIndex != 0 || toRight )
-                    && (pageModel.activeIndex != pageModel.total - 1 || toLeft)
-     
+                    let flag = (pageModel.activeIndex != 0 || toRight ) && (pageModel.activeIndex != pageModel.total - 1 || toLeft)
                     if flag {
-                        pageModel.draggingOffset =  value.translation.width
+                        withAnimation(.slide){
+                            pageModel.draggingOffset =  value.translation.width
+                        }
                     }
                     onSwipeChanging?(value.translation.width)
                 }

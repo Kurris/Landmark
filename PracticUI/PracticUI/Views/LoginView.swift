@@ -12,7 +12,7 @@ struct LoginView: View {
     
     @State var userName : String = ""
     @State var password = ""
-    @AppStorage("access_token") var accessToken : String?
+    
     @EnvironmentObject var model : Model
     
     var body: some View {
@@ -40,7 +40,7 @@ struct LoginView: View {
     }
     
     func loginAsync() async{
-        let url = "https://isawesome.cn:5000/connect/token";
+        let url = "http://localhost:5000/connect/token";
         
         let param = [
             "grant_type": "password",
@@ -58,18 +58,12 @@ struct LoginView: View {
         AF.request(url,method: .post,parameters: param,headers: headers).responseDecodable { (response: AFDataResponse<TokenInfo>) in
             switch response.result {
             case .success(let tokenInfo):
-                accessToken = tokenInfo.access_token
+                model.accessToken = tokenInfo.access_token
                 model.isShowLoginModal = false
             case .failure(let error):
                 print("error:\(error)")
             }
         }
-        
-//        AF.request(url,method: .post,parameters: param,encoding: URLEncoding(),headers: headers).responseJSON{
-//                response in
-//
-//            print(response)
-//        }
     }
 }
 
