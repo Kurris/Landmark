@@ -33,7 +33,7 @@ struct ScanView: View {
     var body: some View {
 //        scanMode: .continuous, scanInterval: 2.0,
         VStack{
-            CodeScannerView(codeTypes: [.qr,.ean8, .ean13, .pdf417], showViewfinder:showViewfinder, simulatedData: "login:CfDJ8FKyxQEd2BlEg7yAknTdB4x_C21c2ZTd5Jza3Hk1eQ8CmjUEOjKYbb1l8YCXJI-AcmlMj8kIOALBEMfcmXdoUA2Y531WFLhZmXf0ebk5CN35qgQ55XCM__BwP1yyD3gMd7TepmyQ7xtBTY63amWym6A", shouldVibrateOnSuccess: true,isTorchOn: isTorchOn,
+            CodeScannerView(codeTypes: [.qr,.ean8, .ean13, .pdf417], showViewfinder:showViewfinder, simulatedData: "login:CfDJ8FKyxQEd2BlEg7yAknTdB4wbwbW7--HUdokH5q1Ew8Dam_E5MGqylqur90uMneRoJ9k9tDJIg-UsjVtzcoYMAc9uFWiOy6sTViXl77A3VnN_yWZM7QjQZS7o6qb6sxDAxfLdqUFMu73qXeiGLJcTD38", shouldVibrateOnSuccess: true,isTorchOn: isTorchOn,
                             isGalleryPresented: $isGalleryPresented) { response in
                 
                 switch response {
@@ -137,7 +137,7 @@ struct ScanView: View {
                         vibrateGenerator.notificationOccurred(.success)
                         presentationMode.wrappedValue.dismiss()
                         
-                        model.loginKey = key
+                        model.loginKey = "login:\(key)"
                         model.isShowConfirmLoginModal = true
                     }
                 }
